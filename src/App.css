@@ -1,4 +1,4 @@
-.container {
+.as-container {
   height: 100vh;
   background-image: linear-gradient(
     to bottom,
@@ -10,87 +10,74 @@
     position: relative;
 }
 
-#nav-bar {
-  height: 8vh;
+#as-nav-bar {
+  height: 80px;
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1),
       rgba(0, 0, 0, 0.5));
 
   color: rgba(255, 255, 255, 0.70);
-  font-size: 2vh;
+  font-size: 14px;
   text-align: center;
-  padding-top: 4vh;
-  letter-spacing: 0.25vw;
+  padding-top: 25px;
+  letter-spacing: 4px;
   font-weight: 700;
-  /* border-bottom-width: 1vh;
-  border-bottom-style: double;
-  border-bottom-color: rgba(255, 255, 255, 0.35); */
   font-family: "Lucida Console", Monaco, monospace
 }
 
-#nav-bar-two {
-  margin-left: 10vw;
+.col-8 {
+  padding-right: 0px;
+}
+
+#title {
+  margin-left: 150px;
   float: left;
 }
 
 #menu {
-  margin-right: 10vw;
+  margin-right: 150px;
   float: right;
 }
 
 #address {
   clear: both;
   color: black;
-  padding-top: .25vh;
-  height: 2.25vh;
+  height: 17px;
+  line-height: 19px;
   width: 100%;
   background-color: rgba(255, 0, 0, 0.35);
   position: relative;
-  top: 3.55vh;
-  font-size: 2vh;
-}
-
-.main-body {
-  margin-left: 10vw;
-  margin-right: 10vw;
+  top: 17px;
+  font-size: 15px;
 }
 
 #carousel {
-  margin-top: 7.5vh;
-  height: 65vh;
-  width: 50vw;
-  float: right;
-  background-image:
-    url(./components/images/magic.jpg);
-    background-position: top;
-    background-size: cover;
-    position: relative;
+  margin-top: 50px;
+  margin-left: 10px;
+}
 
-/* 
-  background-color: rgba(255, 255, 255, 0.25); */
+#magic {
+  width: 100%;
 }
 
 #facebook-widget {
-  margin-top: 7.5vh;
-  float: left;
+  margin-top: 50px;
   height: 20vh;
-  width: 27.5vw;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.25);
 }
 
 #calendar-widget {
-  margin-top: 5vh;
-  float: left;
+  margin-top: 25px;
   height: 20vh;
-  width: 27.5vw;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.25);
 }
 
 #reviews-widget {
-  margin-top: 5vh;
-  float: left;
+  margin-top: 25px;
   height: 15vh;
-  width: 27.5vw;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.25);
 }
