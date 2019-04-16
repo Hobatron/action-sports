@@ -1,0 +1,96 @@
+.container {
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 0, 0, .4)),
+    url(./components/images/114802-restaurant-kebab-campfire-bonfire-fire-1920x1080.jpg);
+    background-position: top;
+    background-size: cover;
+    position: relative;
+}
+
+#nav-bar {
+  height: 8vh;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.5));
+
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 2vh;
+  text-align: center;
+  padding-top: 4vh;
+  letter-spacing: 0.25vw;
+  font-weight: 700;
+  /* border-bottom-width: 1vh;
+  border-bottom-style: double;
+  border-bottom-color: rgba(255, 255, 255, 0.35); */
+  font-family: "Lucida Console", Monaco, monospace
+}
+
+#nav-bar-two {
+  margin-left: 10vw;
+  float: left;
+}
+
+#menu {
+  margin-right: 10vw;
+  float: right;
+}
+
+#address {
+  clear: both;
+  color: black;
+  padding-top: .25vh;
+  height: 2.25vh;
+  width: 100%;
+  background-color: rgba(255, 0, 0, 0.35);
+  position: relative;
+  top: 3.55vh;
+  font-size: 2vh;
+}
+
+.main-body {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+#carousel {
+  margin-top: 7.5vh;
+  height: 65vh;
+  width: 50vw;
+  float: right;
+  background-image:
+    url(./components/images/magic.jpg);
+    background-position: top;
+    background-size: cover;
+    position: relative;
+
+/* 
+  background-color: rgba(255, 255, 255, 0.25); */
+}
+
+#facebook-widget {
+  margin-top: 7.5vh;
+  float: left;
+  height: 20vh;
+  width: 27.5vw;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#calendar-widget {
+  margin-top: 5vh;
+  float: left;
+  height: 20vh;
+  width: 27.5vw;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#reviews-widget {
+  margin-top: 5vh;
+  float: left;
+  height: 15vh;
+  width: 27.5vw;
+  background-color: rgba(255, 255, 255, 0.25);
+}
