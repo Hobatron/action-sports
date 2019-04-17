@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from "react";
 import './App.css';
 import Navbar from './components/Navbar';
 import Carousel from './components/Carousel';
@@ -36,3 +35,4 @@ class App extends Component {
 }
 
 export default App;
+
