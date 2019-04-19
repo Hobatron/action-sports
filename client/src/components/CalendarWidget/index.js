@@ -1,6 +1,7 @@
 import React from 'react';
+import './CalendarWidget.css';
 
-function CalendarWidget() {
+const CalendarWidget = () => {
     return <div id="calendar-widget"></div>
 }
 

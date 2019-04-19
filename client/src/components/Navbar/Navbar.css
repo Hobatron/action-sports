@@ -1,0 +1,79 @@
+#as-nav-bar {
+    height: 80px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.5));
+  
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 14px;
+    text-align: center;
+    padding-top: 25px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    font-family: "Lucida Console", Monaco, monospace
+  }
+
+  #title {
+    margin-left: 150px;
+    float: left;
+  }
+  
+  #menu {
+    margin-right: 150px;
+    float: right;
+  }
+  
+  #address {
+    clear: both;
+    color: black;
+    height: 17px;
+    line-height: 19px;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.35);
+    position: relative;
+    top: 17px;
+    font-size: 15px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #as-nav-bar {
+      height: 100px;
+      background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1),
+          rgba(0, 0, 0, 0.5));
+    
+      color: rgba(255, 255, 255, 0.70);
+      font-size: 10px;
+      text-align: center;
+      padding-top: 0px;
+      letter-spacing: 0px;
+      font-weight: 700;
+      font-family: "Lucida Console", Monaco, monospace
+    }
+
+    #title {
+      font-size: 12px;
+      margin-top: 20px;
+      width: 100%;
+      margin-left: 0px;
+    }
+    
+    #menu {
+      margin-top: 20px;
+      width: 100%;
+      margin-right: 0px;
+    }
+    
+    #address {
+      clear: both;
+      color: black;
+      height: 17px;
+      width: 100%;
+      background-color: rgba(255, 0, 0, 0.35);
+      position: relative;
+      top: 12px;
+      font-size: 9.25px;
+    }
+  }
