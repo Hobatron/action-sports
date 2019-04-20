@@ -1,6 +1,6 @@
 import React from 'react';
 import api from "./api"
-//import './ReviewWidget.css'
+import './ReviewsWidget.css'
 class ReviewsWidget extends React.Component {
     componentDidMount() {
         api.getReviews()
