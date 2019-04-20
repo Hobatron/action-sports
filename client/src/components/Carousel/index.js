@@ -2,6 +2,7 @@ import React from 'react';
 import image from '../images/magic.jpg';
 import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from
   "mdbreact";
+import './Carousel.css';
 
 const CarouselPage = () => {
   return (
