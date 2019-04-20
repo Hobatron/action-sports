@@ -12,4 +12,5 @@ const Users = new Schema({
     rsvp: [String]
 });
 
+const UserCollection = mongoose.model("UserCollection", Schema);
 module.exports = Users;
