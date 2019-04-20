@@ -1,5 +1,7 @@
 .as-container {
+
   height: 100vh;
+  width: 100vw;
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.25),
@@ -8,4 +10,4 @@
     background-position: top;
     background-size: cover;
     position: relative;
-}
+  }
