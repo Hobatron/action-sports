@@ -15,4 +15,5 @@ const Calendar = new Schema({
     location: String
 });
 
+const Calendar = mongoose.model("Calendar", Schema);
 module.exports = Calendar;

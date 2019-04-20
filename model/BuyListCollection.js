@@ -11,4 +11,5 @@ const BuyList = new Schema({
     cardName: String
 });
 
+const BuyList = mongoose.model("BuyList", Schema);
 module.exports = BuyList;
