@@ -1,0 +1,12 @@
+#calendar-widget {
+    margin-top: 25px;
+    height: 150px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  @media only screen and (max-width: 600px) {
+    #calendar-widget {
+      height: 100px;
+    }
+  }

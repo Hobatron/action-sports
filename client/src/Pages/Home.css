@@ -1,0 +1,27 @@
+.col-8 {
+    padding-right: 0px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .col-sm-8 {
+      position: absolute;
+      top: 75px;
+    }
+
+    .col-sm-4 {
+      position: absolute;
+      top: 300px;
+    }
+  }
+ 
+  @media only screen and (max-width: 320px) {
+    .col-sm-8 {
+      position: absolute;
+      top: 75px;
+    }
+
+    .col-sm-4 {
+      position: absolute;
+      top: 250px;
+    }
+  }
