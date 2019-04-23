@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const axios = require('axios');
+const mongoose = require("mongoose")
 const db = require("./model");
 
 const PORT = process.env.PORT || 3001;
@@ -13,6 +14,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+mongoose.connect("mongodb://localhost/action-sports-db", {useNewUrlParser: true});
+
 
 // Define API routes here
 

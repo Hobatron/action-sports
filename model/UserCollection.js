@@ -1,16 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const ObjectID = Schema.ObjectID;
 
-mongoose.connect('mongodb://localhost/usersDB', {useNewUrlParser: true});
-
-const Users = new Schema({
-    id: ObjectID,
-    name: String,
-    interests: [Strings],
-    email: String,
+const UsersSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    interests: [String],
+    email: {
+        type: String,
+        required: true
+    },
     rsvp: [String]
 });
 
-const UserCollection = mongoose.model("UserCollection", Schema);
+var Users = mongoose.model("Users", UsersSchema);
+
 module.exports = Users;
