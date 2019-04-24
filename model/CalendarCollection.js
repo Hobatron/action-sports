@@ -23,8 +23,10 @@ const CalendarSchema = new Schema({
         type: String,
         required: true
     },
-    location: String,
-    repeats: Boolean
+    location: {
+        type: String,
+        repeats: Boolean
+    }
 });
 
 var Calendar = mongoose.model("Calendar", CalendarSchema);
