@@ -68,6 +68,7 @@ module.exports = function(app){
 
     // Post new event
     app.post("/api/calendar", function(req, res){
+        const date = new Date
         db.Calendar.create({
             eventTitle: req.body.eventTitle,
             startDate: req.body.startDate,
