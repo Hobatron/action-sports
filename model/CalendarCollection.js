@@ -19,7 +19,7 @@ const CalendarSchema = new Schema({
         type: Date,
         required: true
     },
-    Description: {
+    description: {
         type: String,
         required: true
     },
