@@ -3,9 +3,18 @@ const Schema = mongoose.Schema;
 
 
 const BuyListSchema = new Schema({
-    price: String,
-    quantity: Number,
-    cardName: String
+    price: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    cardName: {
+        type: String,
+        required: true
+    }
 });
 
 var BuyList = mongoose.model("BuyList", BuyListSchema);
