@@ -4,10 +4,10 @@ import './ReviewsWidget.css'
 class ReviewsWidget extends React.Component {
     componentDidMount() {
         api.getReviews()
-        .then(result => {
-            console.log(result);
-           
-        })
+            .then(result => {
+                console.log(result);
+
+            })
     }
 
     render() {

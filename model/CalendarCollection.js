@@ -7,15 +7,11 @@ const CalendarSchema = new Schema({
         type: String,
         required: true
     },
-    startDate: { 
+    startDate: {
         type: Date,
         required: true
     },
-    endDate: { 
-        type: Date,
-        default: this.startDate
-    },
-    startTime: { 
+    startTime: {
         type: Date,
         required: true
     },
@@ -23,7 +19,10 @@ const CalendarSchema = new Schema({
         type: String,
         required: true
     },
-    location: String,
+    cost: {
+        type: Number,
+        default: 0
+    },
     repeats: Boolean
 });
 
