@@ -1,8 +1,19 @@
 import React from 'react';
-import './ReviewsWidget.css';
+import api from "./api"
+import './ReviewsWidget.css'
+class ReviewsWidget extends React.Component {
+    componentDidMount() {
+        api.getReviews()
+        .then(result => {
+            console.log(result);
+           
+        })
+    }
 
-function ReviewsWidget() {
-    return <div id="reviews-widget"></div>
+    render() {
+        return <div id="reviews-widget"></div>
+    }
 }
+
 
 export default ReviewsWidget;
