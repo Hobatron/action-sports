@@ -18,7 +18,6 @@ mongoose.connect("mongodb://localhost/action-sports-db", {useNewUrlParser: true}
 
 
 /************Define API routes here************/
-
 apiRoutes(app);
 
 // Send every other request to the React app
