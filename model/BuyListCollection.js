@@ -1,14 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const ObjectID = Schema.ObjectID;
 
-mongoose.connect('mongodb://localhost/buyListDB', {useNewUrlParser: true});
 
-const BuyList = new Schema({
-    id: ObjectID,
-    price: String,
-    quantity: Number,
-    cardName: String
+const BuyListSchema = new Schema({
+    price: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    cardName: {
+        type: String,
+        required: true
+    }
 });
+
+var BuyList = mongoose.model("BuyList", BuyListSchema);
 
 module.exports = BuyList;

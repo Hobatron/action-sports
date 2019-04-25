@@ -10,22 +10,24 @@ const Home = () => {
       return (
             <div className="container">
                   <div className="row">
-                        <div className="col-sm-4 col-med-4 col-lg-4 col-xl">
-                              <div className="row">
-                                    <FacebookWidget />
-                              </div>
-                              <div className="row">
-                                    <CalendarWidget />
-                              </div>
-                              <div className="row">
-                                    <ReviewsWidget />
-                              </div>
+                        <div className="col-6">
                         </div>
-                        <div className="col-sm-8 col-med-8 col-lg-8 col-xl-8">
+                        <div className="col-6">
                               <Carousel />
                         </div>
                   </div>
-            </div>
+                  <div className="row">
+                        <div className="col-4">
+                              <FacebookWidget />
+                        </div>
+                        <div className="col-4">
+                              <CalendarWidget />
+                        </div>
+                        <div className="col-4">
+                              <ReviewsWidget />
+                        </div>
+                  </div>
+            </div >
       );
 };
 

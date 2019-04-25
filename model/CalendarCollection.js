@@ -1,18 +1,35 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const ObjectID = Schema.ObjectID;
 
-mongoose.connect('mongodb://localhost/calendarDB', {useNewUrlParser: true});
 
-const Calendar = new Schema({
-    id: ObjectID,
-    eventTitle: String,
-    startDate: Date,
-    endDate: Date,
-    startTime: Date,
-    endTime: Date,
-    Description: String,
-    location: String
+const CalendarSchema = new Schema({
+    eventTitle: {
+        type: String,
+        required: true
+    },
+    startDate: { 
+        type: Date,
+        required: true
+    },
+    endDate: { 
+        type: Date,
+        default: this.startDate
+    },
+    startTime: { 
+        type: Date,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String,
+        repeats: Boolean
+    }
 });
+
+var Calendar = mongoose.model("Calendar", CalendarSchema);
+
 
 module.exports = Calendar;
