@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const axios = require('axios');
 const mongoose = require("mongoose")
 const db = require("./model");
 const apiRoutes = require("./routes/apiRoutes");
@@ -20,6 +19,9 @@ mongoose.connect("mongodb://localhost/action-sports-db", {useNewUrlParser: true}
 
 
 // Define API routes here
+
+=======
+/************Define API routes here************/
 
 apiRoutes(app);
 

@@ -72,7 +72,6 @@ module.exports = function(app){
         });
     });
 
-
     /*********Calendar API Routes***********/
 
     // Post new event
@@ -110,7 +109,6 @@ module.exports = function(app){
             console.log(err);
         });
     });
-
     
     // Delete one Event
     app.delete("/api/calendar/:id", function(req, res){

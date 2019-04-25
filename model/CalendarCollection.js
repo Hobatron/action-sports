@@ -27,7 +27,6 @@ const CalendarSchema = new Schema({
         type: Boolean,
         default: false
     }
-
 });
 
 var Calendar = mongoose.model("Calendar", CalendarSchema);

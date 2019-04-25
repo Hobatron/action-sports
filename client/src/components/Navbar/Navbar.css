@@ -15,12 +15,10 @@
   }
 
   #title {
-    margin-left: 150px;
     float: left;
   }
   
   #menu {
-    margin-right: 150px;
     float: right;
   }
   
@@ -36,7 +34,7 @@
     font-size: 15px;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 767px) {
     #as-nav-bar {
       height: 100px;
       background: linear-gradient(
