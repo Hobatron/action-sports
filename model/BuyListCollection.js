@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const BuyListSchema = new Schema({
-    price: String,
+    price: Number,
     quantity: Number,
     cardName: String
 });

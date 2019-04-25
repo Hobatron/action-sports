@@ -3,6 +3,7 @@ const path = require("path");
 const axios = require('axios');
 const mongoose = require("mongoose")
 const db = require("./model");
+const apiRoutes = require("./routes/apiRoutes");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,17 +21,7 @@ mongoose.connect("mongodb://localhost/action-sports-db", {useNewUrlParser: true}
 
 // Define API routes here
 
-app.get('/api/maps', (req, res) => {
-  let queryReviewURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJVZiQSzr4wIcR6DwKBkAZodA&key=AIzaSyDK47iRJeeV1kj_xv-U2ZoPO-Lk7UnVyHM"
-
-  axios({
-    method: 'get',
-    url: queryReviewURL
-  })
-    .then(function(response) {
-      res.json(response.data);
-    })
-})
+apiRoutes(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs

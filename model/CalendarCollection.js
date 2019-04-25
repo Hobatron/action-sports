@@ -8,23 +8,26 @@ const CalendarSchema = new Schema({
         required: true
     },
     startDate: { 
-        type: Date,
-        required: true
-    },
-    endDate: { 
-        type: Date,
-        default: this.startDate
-    },
-    startTime: { 
-        type: Date,
-        required: true
-    },
-    Description: {
         type: String,
         required: true
     },
-    location: String,
-    repeats: Boolean
+    startTime: { 
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    cost: {
+        type: Number,
+        default: 0
+    },
+    repeat: {
+        type: Boolean,
+        default: false
+    }
+
 });
 
 var Calendar = mongoose.model("Calendar", CalendarSchema);
