@@ -6,7 +6,7 @@
     to bottom,
     rgba(255, 255, 255, 0.25),
     rgba(255, 0, 0, .4)),
-    url(./components/images/114802-restaurant-kebab-campfire-bonfire-fire-1920x1080.jpg);
+    url(./components/images/mainBackground.jpg);
     background-position: top;
     background-size: cover;
     position: relative;

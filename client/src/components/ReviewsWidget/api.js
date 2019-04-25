@@ -14,7 +14,6 @@ getReviews:function() {
         .then(function(response) {
             return response.data.result.reviews;
         })
-      
 }
 
 
