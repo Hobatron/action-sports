@@ -11,9 +11,9 @@ export class Admin extends Component {
 
     state = {
         catagories: [
-            "magic", "d&d"
+            "Magic", "d&d", "Vangaurd"
         ],
-        selectedValue: 'a',
+        selectedValue: '',
     };
 
 
@@ -132,16 +132,16 @@ export class Admin extends Component {
                 </MDBRow>
                 {/* Will map to show all available sets here*/}
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
-                    <div>
+                    <div className="w-100">
                         <span className="font-weight-bold">Email Blast</span>
-                        <div className="pl-3 pr-3 border">
-                            <RadioGroup>
+                        <div className="pl-3 w-100 pr-3 border">
+                            <form className="form-inline">
                                 {this.state.catagories.map((catagory) => {
                                     return (
                                         <FormControlLabel
                                             key={catagory}
                                             control={
-                                                <Radio
+                                                <Radio className="radio"
                                                     checked={this.state.selectedValue === `${catagory}`}
                                                     onChange={this.handleRadioChange}
                                                     value={catagory}
@@ -154,7 +154,7 @@ export class Admin extends Component {
                                         />
                                     )
                                 })}
-                            </RadioGroup>
+                            </form>
                             <MDBInput required={true} type="textarea" label="Email" outline />
                         </div>
                     </div>

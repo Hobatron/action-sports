@@ -11,10 +11,12 @@ class App extends Component {
       <div className="as-container">
         <Navbar />
         <Router>
+          <div>
           <Route exact path="/" component={Home} />
           {/* <Route path="/calendar" component={Calendar} />
           <Route path="/buylist" component={BuyList} /> */}
           <Route path="/admin" component={Admin} />
+          </div>
         </Router>
       </div>
     );

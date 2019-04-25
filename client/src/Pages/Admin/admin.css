@@ -1,3 +1,7 @@
 .white-bg {
     background-color: white;
 }
+
+.radio {
+    display: inline;
+}
