@@ -8,24 +8,24 @@ const CalendarSchema = new Schema({
         required: true
     },
     startDate: { 
-        type: Date,
+        type: String,
         required: true
     },
-    endDate: { 
-        type: Date,
-        default: this.startDate
-    },
     startTime: { 
-        type: Date,
+        type: String,
         required: true
     },
     description: {
         type: String,
         required: true
     },
-    location: {
-        type: String,
-        repeats: Boolean
+    cost: {
+        type: Number,
+        default: 0
+    },
+    repeat: {
+        type: Boolean,
+        default: false
     }
 });
 
