@@ -24,6 +24,7 @@ app.get('/api/maps', (req, res) => {
   })
     .then(function(response) {
       res.json(response.data);
+      console.log(response.data)
     })
 })
 
