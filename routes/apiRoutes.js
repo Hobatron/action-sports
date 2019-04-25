@@ -1,6 +1,5 @@
 const db = require("../model");
 const axios = require('axios');
-const Busboy = require('busboy')
 
 module.exports = function (app) {
 
@@ -68,7 +67,7 @@ module.exports = function (app) {
 
     // Delete user
     app.delete("/api/user/:id", function (req, res) {
-        db.User.remove({
+        db.User.deleteOne({
             _id: req.params.id
         }).then(function (response) {
             res.json(response);
@@ -77,6 +76,14 @@ module.exports = function (app) {
         });
     });
 
+    // Delete all users
+    app.delete("/api/user", function (req, res) {
+        db.User.deleteMany({}).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
 
     /*********Calendar API Routes***********/
 
@@ -85,10 +92,10 @@ module.exports = function (app) {
         db.Calendar.create({
             eventTitle: req.body.eventTitle,
             startDate: req.body.startDate,
-            endDate: req.body.endDate,
             startTime: req.body.startTime,
             description: req.body.description,
-            location: req.body.location
+            cost: req.body.cost,
+            repeat: req.body.repeat
         }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
@@ -116,18 +123,9 @@ module.exports = function (app) {
         });
     });
 
-    // Delete all events
-    app.delete("/api/calendar", function (req, res) {
-        db.Calendar.remove({}).then(function (response) {
-            res.json(response);
-        }).catch(function (err) {
-            console.log(err);
-        });
-    });
-
     // Delete one Event
     app.delete("/api/calendar/:id", function (req, res) {
-        db.Calendar.remove({
+        db.Calendar.deleteOne({
             _id: req.params.id
         }).then(function (response) {
             res.json(response);
@@ -136,8 +134,17 @@ module.exports = function (app) {
         });
     });
 
+    // Delete all events
+    app.delete("/api/calendar", function (req, res) {
+        db.Calendar.deleteMany({}).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
 
-    /*********Calendar API Routes***********/
+
+    /*********BuyList API Routes***********/
 
     // Post the buy list
     app.post("/api/buylist", function (req, res) {
@@ -146,6 +153,59 @@ module.exports = function (app) {
             quantity: req.body.quantity,
             cardName: req.body.cardName
         }).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    // Get the buy list
+    app.get("/api/buylist", function (req, res) {
+        db.BuyList.find({}).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    // Update the buy list
+    app.put("/api/buylist/:id", function (req, res) {
+        db.BuyList.update({
+                _id: req.params.id
+            },
+
+            {
+                $set: {
+                    price: req.body.price,
+                    quantity: req.body.quantity,
+                    cardName: req.body.cardName
+                }
+            },
+
+            {
+                multi: true
+            }
+        ).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    // Delete an item on buy list
+    app.delete("/api/buylist/:id", function (req, res) {
+        db.BuyList.deleteOne({
+            _id: req.params.id
+        }).then(function (response) {
+            res.json(response);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    // Delete entire buy list
+    app.delete("/api/buylist", function (req, res) {
+        db.BuyList.deleteMany({}).then(function (response) {
             res.json(response);
         }).catch(function (err) {
             console.log(err);

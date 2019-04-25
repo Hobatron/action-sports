@@ -9,6 +9,7 @@
     "mdbreact": "4.13.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-facebook": "^8.0.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.0.5",
     "react-swipeable-views": "^0.13.1"

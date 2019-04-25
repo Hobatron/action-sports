@@ -1,16 +1,11 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose")
+const db = require("./model");
 const apiRoutes = require("./routes/apiRoutes");
-const busboy = require('connect-busboy')
-const busboyBodyParse = require('busboy-body-parser')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
-//File reader
-app.use(busboy());
-app.use(bodyParser.url)
 
 // Define middleware here
 app.use(express.urlencoded({
@@ -26,6 +21,8 @@ mongoose.connect("mongodb://localhost/action-sports-db", {
   useNewUrlParser: true
 });
 
+
+// Define API routes here
 
 /************Define API routes here************/
 

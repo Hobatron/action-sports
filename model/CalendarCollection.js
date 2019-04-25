@@ -8,11 +8,11 @@ const CalendarSchema = new Schema({
         required: true
     },
     startDate: {
-        type: Date,
+        type: String,
         required: true
     },
     startTime: {
-        type: Date,
+        type: String,
         required: true
     },
     description: {
@@ -23,7 +23,10 @@ const CalendarSchema = new Schema({
         type: Number,
         default: 0
     },
-    repeats: Boolean
+    repeat: {
+        type: Boolean,
+        default: false
+    }
 });
 
 var Calendar = mongoose.model("Calendar", CalendarSchema);

@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBInput, MDBCol, MDBInputSelect, MDBBtn } from '
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import AAddRemoveCarousel from './AAddRemoveCarousel';
+import AAddRemoveCarousel from './AdminCarousel';
 import AdminCalendar from './AdminCalendar';
 
 
