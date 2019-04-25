@@ -7,11 +7,11 @@ const CalendarSchema = new Schema({
         type: String,
         required: true
     },
-    startDate: { 
+    startDate: {
         type: String,
         required: true
     },
-    startTime: { 
+    startTime: {
         type: String,
         required: true
     },
