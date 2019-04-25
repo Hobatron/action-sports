@@ -1,64 +1,78 @@
 const db = require("../model");
 const axios = require('axios');
+const Busboy = require('busboy')
 
-module.exports = function(app){
+module.exports = function (app) {
 
     // Google Map API route
     app.get('/api/maps', (req, res) => {
         let queryReviewURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJVZiQSzr4wIcR6DwKBkAZodA&key=AIzaSyDK47iRJeeV1kj_xv-U2ZoPO-Lk7UnVyHM"
-  
+
         axios({
-            method: 'get',
-            url: queryReviewURL
-        })
-        .then(function(response) {
-            res.json(response.data);
-        });
+                method: 'get',
+                url: queryReviewURL
+            })
+            .then(function (response) {
+                res.json(response.data);
+            });
     });
-  
+
     /*********User API Routes***********/
-    
+    //File upload
+    app.post('/api/admin/carousel/upload', function (req, res, next) {
+        //if(res.adminAuthToken === authToken) {}
+        const image = req.body.image;
+        let busboy = new Busboy({
+            headers: req.headers
+        })
+
+        busboy.on('finish', function () {
+            console.log(req.files)
+        });
+        req.pipe(busboy);
+    })
+
     // Post user data
-    app.post("/api/user", function(req, res){
+    app.post("/api/user", function (req, res) {
         db.User.create({
             name: req.body.name,
             interests: req.body.interests,
             email: req.body.email,
             rsvp: req.body.rsvp
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
-    
+
     // Get all users
-    app.get("/api/user", function(req, res){
-        db.User.find({}).then(function(response){
+    app.get("/api/user", function (req, res) {
+        db.User.find({}).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
-    
+
     // Get one User
-    app.get("/api/user/:id", function(req, res){
+    app.get("/api/user/:id", function (req, res) {
         db.User.findOne({
             _id: req.params.id
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
-    
+
     // Delete user
-    app.delete("/api/user/:id", function(req, res){
+    app.delete("/api/user/:id", function (req, res) {
         db.User.remove({
             _id: req.params.id
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
@@ -67,7 +81,7 @@ module.exports = function(app){
     /*********Calendar API Routes***********/
 
     // Post new event
-    app.post("/api/calendar", function(req, res){
+    app.post("/api/calendar", function (req, res) {
         db.Calendar.create({
             eventTitle: req.body.eventTitle,
             startDate: req.body.startDate,
@@ -75,49 +89,49 @@ module.exports = function(app){
             startTime: req.body.startTime,
             description: req.body.description,
             location: req.body.location
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Get all events
-    app.get("/api/calendar", function(req, res){
-        db.Calendar.find({}).then(function(response){
+    app.get("/api/calendar", function (req, res) {
+        db.Calendar.find({}).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Get one event
-    app.get("/api/calendar/:id", function(req, res){
+    app.get("/api/calendar/:id", function (req, res) {
         db.Calendar.findOne({
             _id: req.params.id
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Delete all events
-    app.delete("/api/calendar", function(req, res){
-        db.Calendar.remove({}).then(function(response){
+    app.delete("/api/calendar", function (req, res) {
+        db.Calendar.remove({}).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Delete one Event
-    app.delete("/api/calendar/:id", function(req, res){
+    app.delete("/api/calendar/:id", function (req, res) {
         db.Calendar.remove({
             _id: req.params.id
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
@@ -126,14 +140,14 @@ module.exports = function(app){
     /*********Calendar API Routes***********/
 
     // Post the buy list
-    app.post("/api/buylist", function(req, res){
+    app.post("/api/buylist", function (req, res) {
         db.BuyList.create({
             price: req.body.price,
             quantity: req.body.quantity,
             cardName: req.body.cardName
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
