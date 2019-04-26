@@ -1,12 +1,7 @@
 import axios from "axios";
 
-
-
-export default { 
-    
-
-
-getReviews:function() {
+export default {
+  getReviews: function () {
     return axios({
         method: 'get',
         url: '/api/maps'
@@ -14,7 +9,5 @@ getReviews:function() {
         .then(function(response) {
             return response.data.result.reviews;
         })
-}
-
-
+    }
 }
