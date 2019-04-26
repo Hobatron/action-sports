@@ -6,8 +6,8 @@ export default {
         method: 'get',
         url: '/api/maps'
       })
-      .then(function (response) {
-        return response.data.result.reviews;
-      })
-  }
+        .then(function(response) {
+            return response.data.result.reviews;
+        })
+    }
 }
