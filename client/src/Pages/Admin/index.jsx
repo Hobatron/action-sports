@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBInput, MDBCol, MDBInputSelect, MDBBtn } from '
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import AAddRemoveCarousel from './AdminCarousel';
+import AdminCarousel from './AdminCarousel';
 import AdminCalendar from './AdminCalendar';
 
 
@@ -34,17 +34,21 @@ export class Admin extends Component {
 
     render() {
         return (
-            <MDBContainer className="mt-5 white-bg">
-                <AdminCalendar />
+            <MDBContainer className="mt-5">
+                <MDBRow className="form-group pl-5 pr-5 pt-4">
+                    <div>
+                        <div className="p-3 w-100 border">
+                            <AdminCalendar />
+                        </div>
+                    </div>
+                </MDBRow>
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
                     Space for editing upcoming events
                 </MDBRow>
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
-                    <div className="">
-                        <span className="font-weight-bold"></span>
-                        <div className="pl-3 w-100 pr-3 border">
-                            <AAddRemoveCarousel>
-                            </AAddRemoveCarousel>
+                    <div>
+                        <div className="p-3 w-100 border">
+                            <AdminCarousel />
                         </div>
                     </div>
                 </MDBRow>
@@ -84,7 +88,7 @@ export class Admin extends Component {
                 </MDBRow>
                 {/* Will map to show all available sets here*/}
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
-                    <div className="w-100">
+                    <div className="white-bg w-100">
                         <span className="font-weight-bold">Email Blast</span>
                         <div className="pl-3 w-100 pr-3 border">
                             <form className="form-inline">
@@ -111,7 +115,7 @@ export class Admin extends Component {
                         </div>
                     </div>
                 </MDBRow>
-            </MDBContainer>
+            </MDBContainer >
         );
     };
 };

@@ -23,6 +23,9 @@ const CalendarSchema = new Schema({
         type: Number,
         default: 0
     },
+    eventType: {
+        type: String,
+    },
     repeat: {
         type: Boolean,
         default: false

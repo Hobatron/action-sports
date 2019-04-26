@@ -6,6 +6,38 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import SwipeableViews from 'react-swipeable-views';
+
+function TabContainer(props) {
+    const { children, dir } = props;
+
+    return (
+        <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+            {children}
+        </Typography>
+    );
+}
+
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+    dir: PropTypes.string.isRequired,
+};
+
+const styles = theme => ({
+    root: {
+        backgroundColor: theme.palette.background.paper,
+        width: 500,
+        position: 'relative',
+        minHeight: 200,
+    }
+});
+
 
 export class AdminCalender extends Component {
     state = {
@@ -14,18 +46,44 @@ export class AdminCalender extends Component {
             "KeyForge", "Transformers"
         ],
         selectedValue: '',
+        value: 0,
     };
 
     handleDateChange = name => event => {
         this.setState({ [name]: event.target.checked });
     };
 
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
+
+    handleChangeIndex = index => {
+        this.setState({ value: index });
+    };
+
     render() {
+        const { classes, theme } = this.props;
+
         return (
-            <MDBRow className="form-group pl-5 pr-5 pt-4">
-                <div className="">
-                    <span className="font-weight-bold">Add to Calendar</span>
-                    <div className="pl-3 w-100 pr-3 border">
+            <div className={classes.root}>
+                <AppBar position="static" color="default">
+                    <Tabs
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        variant="fullWidth"
+                    >
+                        <Tab label="Add Event" />
+                        <Tab label="Remove Event" />
+                    </Tabs>
+                </AppBar>
+                <SwipeableViews
+                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                    index={this.state.value}
+                    onChangeIndex={this.handleChangeIndex}
+                >
+                    <TabContainer dir={theme.direction}>
                         <MDBInput label="Event Name" className="d-inline-block" outline />
                         <MDBInput type="textarea" label="Details" outline />
                         <MDBRow>
@@ -68,7 +126,7 @@ export class AdminCalender extends Component {
                             </MDBCol>
                             <MDBCol>
                                 Cost
-                            <MDBInputSelect
+                                            <MDBInputSelect
                                     precision={2}
                                     value={0}
                                     step={0.25}
@@ -84,7 +142,7 @@ export class AdminCalender extends Component {
                                 <FormControl>
                                     <InputLabel shrink htmlFor="select-multiple-native">
                                         Event Type
-                        </InputLabel>
+                                                </InputLabel>
                                     <Select
                                         multiple
                                         native
@@ -103,11 +161,11 @@ export class AdminCalender extends Component {
                                 </FormControl>
                             </MDBCol>
                         </MDBRow>
-                    </div>
-                </div>
-            </MDBRow>
+                    </TabContainer>
+                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                </SwipeableViews>
+            </div>
         )
     }
 }
-
-export default AdminCalender;
+export default withStyles(styles, { withTheme: true })(AdminCalender)
