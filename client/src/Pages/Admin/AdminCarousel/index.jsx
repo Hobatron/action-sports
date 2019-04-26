@@ -92,7 +92,3 @@ class FloatingActionButtonZoom extends React.Component {
 }
 
 export default withStyles(styles, { withTheme: true })(FloatingActionButtonZoom);
-
-
-
-{/*  */ }

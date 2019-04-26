@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FacebookWidget from '../../components/FacebookWidget';
 import CalendarWidget from '../../components/CalendarWidget';
 import ReviewsWidget from '../../components/ReviewsWidget';
