@@ -1,16 +1,17 @@
 #facebook-widget {
-    margin-top: 25px;
-    height: 500px;
-    margin-top: 50px;
-    height: 150px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.25);
-    border: none;
-    overflow: hidden;
-};
-   
+  margin-top: 25px;
+  height: 500px;
+  margin-top: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: none;
+  overflow: hidden;
+}
 
-  /* @media only screen and (max-width: 600px) {
+;
+
+
+/* @media only screen and (max-width: 600px) {
     #facebook-widget {
       height: 100px;
       margin-top: 50px;

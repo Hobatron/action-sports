@@ -1,15 +1,16 @@
 #reviews-widget {
-  margin-top: 25px;
+  margin-top: 50px;
+  margin-bottom: 25px;
   height: 300px;
   width: 100%;
-  background: linear-gradient(
-    to bottom,
+  background: linear-gradient(to bottom,
     rgba(0, 0, 0, 1),
     rgba(0, 0, 0, 0.5));
   overflow: auto;
   border-style: solid;
   border-width: medium;
 }
+
 #reviewsTitle {
   color: white;
   text-align: center;
@@ -21,6 +22,7 @@
   box-shadow: 15em;
   background-attachment: fixed;
 }
+
 #authorsName {
   color: darkorange;
   font-weight: bold;
@@ -29,6 +31,7 @@
   margin-right: 5px;
   height: 10px;
 }
+
 #authorRating {
   font-size: 20px;
   color: black;
@@ -38,6 +41,7 @@
   height: 10px;
   width: 30px;
 }
+
 #authorsTime {
   font-size: 10px;
   color: darkgrey;
@@ -45,6 +49,7 @@
   margin-right: 5px;
   height: 6px;
 }
+
 #authorsReview {
   font-size: 16px;
   color: black;
@@ -55,6 +60,7 @@
   background-color: rgb(236, 227, 227);
   box-shadow: 2px 2px #888888;
 }
+
 @media only screen and (max-width: 600px) {
   #reviews-widget {
     height: 75px;

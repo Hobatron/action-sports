@@ -26,6 +26,10 @@
     "renamer": "^1.0.0",
     "rimraf": "^2.6.2"
   },
+  "devServer": {
+    "host": "10.0.0.233",
+    "port": 3002
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
