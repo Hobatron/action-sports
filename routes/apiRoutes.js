@@ -123,6 +123,62 @@ module.exports = function (app) {
         });
     });
 
+    // Update an events with same title
+    app.put("/api/calendar", function(req, res){
+        db.Calendar.update(
+            {
+                eventTitle: req.body.eventTitle
+            },
+
+            {
+                $set: {
+                    eventTitle: req.body.eventTitle,
+                    startDate: req.body.startDate,
+                    startTime: req.body.startTime,
+                    description: req.body.description,
+                    cost: req.body.cost,
+                    repeat: req.body.repeat
+                }
+            },
+
+            {
+                multi: true
+            }
+        ).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Update one event
+    app.put("/api/calendar/:id", function(req, res){
+        db.Calendar.update(
+            {
+                _id: req.params.id
+            },
+
+            {
+                $set: {
+                    eventTitle: req.body.eventTitle,
+                    startDate: req.body.startDate,
+                    startTime: req.body.startTime,
+                    description: req.body.description,
+                    cost: req.body.cost,
+                    repeat: req.body.repeat
+                }
+            },
+
+            {
+                multi: true
+            }
+        ).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
     // Delete one Event
     app.delete("/api/calendar/:id", function (req, res) {
         db.Calendar.deleteOne({
@@ -170,7 +226,8 @@ module.exports = function (app) {
 
     // Update the buy list
     app.put("/api/buylist/:id", function (req, res) {
-        db.BuyList.update({
+        db.BuyList.update(
+            {
                 _id: req.params.id
             },
 
