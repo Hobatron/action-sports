@@ -3,7 +3,9 @@ body {
     rgba(255, 255, 255, 0.25),
     rgba(255, 0, 0, .4)),
     url(./components/images/mainBackground.jpg);
-  background-position: top;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   position: relative;
 }
