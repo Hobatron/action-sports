@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './admin.css'
-import { MDBContainer, MDBRow, MDBInput, MDBCol, MDBInputSelect, MDBBtn } from 'mdbreact';
-import Checkbox from '@material-ui/core/Checkbox';
+import { MDBContainer, MDBRow, MDBInput, MDBBtn } from 'mdbreact';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AdminCarousel from './AdminCarousel';
 import AdminCalendar from './AdminCalendar';
+import AdminBuylist from './AdminBuylist';
 
 
 
@@ -28,16 +28,14 @@ export class Admin extends Component {
         this.setState({ selectedValue: event.target.value });
     };
 
-    handleSetChange = event => {
-        console.log(event)
-    }
+
 
     render() {
         return (
             <MDBContainer className="mt-5">
                 <MDBRow className="form-group pl-5 pr-5 pt-4">
                     <div>
-                        <div className="p-3 w-100 border">
+                        <div className="bshadow p-3 w-100 border">
                             <AdminCalendar />
                         </div>
                     </div>
@@ -47,50 +45,24 @@ export class Admin extends Component {
                 </MDBRow>
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
                     <div>
-                        <div className="p-3 w-100 border">
+                        <div className="bshadow p-3 w-100 border">
                             <AdminCarousel />
                         </div>
                     </div>
                 </MDBRow>
                 <MDBRow className="pl-5 pr-5 pt-4">
                     <div>
-                        <span className="font-weight-bold">Add to Buylist</span>
-                        <div className="pl-3 pr-3 border">
-                            <MDBRow>
-                                <MDBCol>
-                                    <MDBInput label="Card Name" className="d-inline-block" outline />
-                                </MDBCol>
-                                <MDBCol className="mt-3">
-                                    <FormControlLabel className=""
-                                        control={<Checkbox
-                                            onChange={this.handleSetChange('set')}
-                                            value="repeat"
-                                            label="Male"
-                                        />}
-                                        label="All sets"
-                                    />
-                                </MDBCol>
-                            </MDBRow>
-                            <MDBRow>
-                                <MDBCol>
-                                    Paying
-                                <MDBInputSelect
-                                        precision={2}
-                                        value={10}
-                                        step={0.25}
-                                        className="mb-2"
-                                    />
-                                </MDBCol>
-                            </MDBRow>
-                            <MDBBtn color="light-green">Add card</MDBBtn>
+                        <div className="bshadow p-3 border">
+                            <AdminBuylist />
                         </div>
                     </div>
                 </MDBRow>
                 {/* Will map to show all available sets here*/}
-                <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
-                    <div className="white-bg w-100">
-                        <span className="font-weight-bold">Email Blast</span>
-                        <div className="pl-3 w-100 pr-3 border">
+                <MDBRow className="font-weight-bold pl-5 pr-5 pt-4 mb-5">
+                    <div className="bshadow w-100 p-3 border">
+                        <div className="p-3 w-100 white-bg">
+                            <span className="font-weight-bold">Email Blast</span>
+
                             <form className="form-inline">
                                 {this.state.catagories.map((catagory) => {
                                     return (
@@ -112,6 +84,7 @@ export class Admin extends Component {
                                 })}
                             </form>
                             <MDBInput type="textarea" label="Email" outline />
+                            <MDBBtn className="ml-2" color="light-green">Add Event</MDBBtn>
                         </div>
                     </div>
                 </MDBRow>
