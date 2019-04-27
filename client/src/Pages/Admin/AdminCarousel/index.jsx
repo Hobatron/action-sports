@@ -32,7 +32,7 @@ const styles = theme => ({
     }
 });
 
-class FloatingActionButtonZoom extends React.Component {
+class AdminCarousel extends React.Component {
     state = {
         value: 0,
     };
@@ -91,8 +91,4 @@ class FloatingActionButtonZoom extends React.Component {
     }
 }
 
-export default withStyles(styles, { withTheme: true })(FloatingActionButtonZoom);
-
-
-
-{/*  */ }
+export default withStyles(styles, { withTheme: true })(AdminCarousel);

@@ -5,3 +5,7 @@
 .radio {
     display: inline;
 }
+
+.bshadow {
+    box-shadow: 0px 5px 15px 8px;
+}
