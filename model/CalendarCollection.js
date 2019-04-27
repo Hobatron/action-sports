@@ -29,7 +29,7 @@ const CalendarSchema = new Schema({
     }
 });
 
-var Calendar = mongoose.model("Calendar", CalendarSchema);
+const Calendar = mongoose.model("Calendar", CalendarSchema);
 
 
 module.exports = Calendar;
