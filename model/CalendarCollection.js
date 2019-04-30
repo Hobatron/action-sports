@@ -29,10 +29,13 @@ const CalendarSchema = new Schema({
     repeat: {
         type: Boolean,
         default: false
+    },
+    eventType: {
+        type: String
     }
 });
 
-var Calendar = mongoose.model("Calendar", CalendarSchema);
+const Calendar = mongoose.model("Calendar", CalendarSchema);
 
 
 module.exports = Calendar;
