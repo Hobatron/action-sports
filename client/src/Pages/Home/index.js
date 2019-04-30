@@ -3,7 +3,7 @@ import FacebookWidget from '../../components/FacebookWidget';
 import CalendarWidget from '../../components/CalendarWidget';
 import ReviewsWidget from '../../components/ReviewsWidget';
 import Carousel from '../../components/Carousel';
-import EventsWidget from '../../components/EventsWidget'
+import EventsWidget from '../../components/EventsWidget';
 import './Home.css';
 
 

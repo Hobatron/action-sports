@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './Pages/Home/index.js';
 import Admin from './Pages/Admin';
 
+
 class App extends Component {
   render() {
     return (
