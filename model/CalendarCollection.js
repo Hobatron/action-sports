@@ -7,25 +7,28 @@ const CalendarSchema = new Schema({
         type: String,
         required: true
     },
-    startDate: { 
-        type: Date,
+    startDate: {
+        type: String,
         required: true
     },
-    endDate: { 
-        type: Date,
-        default: this.startDate
-    },
-    startTime: { 
-        type: Date,
+    startTime: {
+        type: String,
         required: true
     },
     description: {
         type: String,
         required: true
     },
-    location: {
+    cost: {
+        type: Number,
+        default: 0
+    },
+    eventType: {
         type: String,
-        repeats: Boolean
+    },
+    repeat: {
+        type: Boolean,
+        default: false
     }
 });
 
