@@ -30,9 +30,6 @@ const CalendarSchema = new Schema({
         type: Boolean,
         default: false
     },
-    eventType: {
-        type: String
-    }
 });
 
 const Calendar = mongoose.model("Calendar", CalendarSchema);
