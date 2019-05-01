@@ -95,7 +95,8 @@ module.exports = function (app) {
             startTime: req.body.startTime,
             description: req.body.description,
             cost: req.body.cost,
-            repeat: req.body.repeat
+            repeat: req.body.repeat,
+            eventType: req.body.eventType
         }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
@@ -108,6 +109,17 @@ module.exports = function (app) {
         db.Calendar.find({}).then(function (response) {
             res.json(response);
         }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    // Get events for specific event types
+    app.get("/api/calendar/eventType", function(req, res){
+        db.Calendar.find({
+            eventType: req.body.eventType
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
             console.log(err);
         });
     });
@@ -265,6 +277,40 @@ module.exports = function (app) {
         db.BuyList.deleteMany({}).then(function (response) {
             res.json(response);
         }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    /*********Carousel API Routes***********/
+
+    // Post carousel pics
+    app.post("/api/carousel", function(req, res){
+        db.Carousel.create({
+            images: req.body.images,
+            description: req.body.description
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Get all carousel pics
+    app.get("/api/carousel", function(req, res){
+        db.Carousel.find({}).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Delete a carousel
+    app.delete("/api/carousel/:id", function(req, res){
+        db.Carousel.deleteOne({
+            _id: req.params.id
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
             console.log(err);
         });
     });

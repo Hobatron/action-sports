@@ -43,6 +43,10 @@ export class AdminBuylist extends Component {
         this.setState({ value });
     };
 
+    handleSetChange = event => {
+        console.log(event)
+    }
+
     handleChangeIndex = index => {
         this.setState({ value: index });
     };
@@ -50,7 +54,6 @@ export class AdminBuylist extends Component {
         const { classes, theme } = this.props;
 
         return (
-
             <div className={classes.root}>
                 <AppBar position="static" color="default">
                     <Tabs
@@ -60,50 +63,43 @@ export class AdminBuylist extends Component {
                         textColor="primary"
                         variant="fullWidth"
                     >
-                        <Tab label="Add Carousel" />
-                        <Tab label="Remove Carousel" />
+                        <Tab label="Add to Buylist" />
+                        <Tab label="Remove From Buylist" />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
                     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                     index={this.state.value}
                     onChangeIndex={this.handleChangeIndex}
-                    >
+                >
                     <TabContainer dir={theme.direction}>
-                        <MDBRow className="pl-5 pr-5 pt-4">
-                            <div>
-                                <span className="font-weight-bold">Add to Buylist</span>
-                                <div className="pl-3 pr-3 border">
-                                    <MDBRow>
-                                        <MDBCol>
-                                            <MDBInput label="Card Name" className="d-inline-block" outline />
-                                        </MDBCol>
-                                        <MDBCol className="mt-3">
-                                            <FormControlLabel className=""
-                                                control={<Checkbox
-                                                    onChange={this.handleSetChange('set')}
-                                                    value="repeat"
-                                                    label="Male"
-                                                />}
-                                                label="All sets"
-                                            />
-                                        </MDBCol>
-                                    </MDBRow>
-                                    <MDBRow>
-                                        <MDBCol>
-                                            Paying
-                                            <MDBInputSelect
-                                                precision={2}
-                                                value={10}
-                                                step={0.25}
-                                                className="mb-2"
-                                            />
-                                        </MDBCol>
-                                    </MDBRow>
-                                    <MDBBtn color="light-green">Add card</MDBBtn>
-                                </div>
-                            </div>
+                        <MDBRow>
+                            <MDBCol>
+                                <MDBInput label="Card Name" className="d-inline-block" outline />
+                            </MDBCol>
+                            <MDBCol className="mt-3">
+                                <FormControlLabel className=""
+                                    control={<Checkbox
+                                        onChange={this.handleSetChange('set')}
+                                        value="repeat"
+                                        label="Male"
+                                    />}
+                                    label="All sets"
+                                />
+                            </MDBCol>
                         </MDBRow>
+                        <MDBRow>
+                            <MDBCol>
+                                Paying
+                                            <MDBInputSelect
+                                    precision={2}
+                                    value={10}
+                                    step={0.25}
+                                    className="mb-2"
+                                />
+                            </MDBCol>
+                        </MDBRow>
+                        <MDBBtn color="light-green">Add card</MDBBtn>
                     </TabContainer>
                     <TabContainer dir={theme.direction}>Item Two</TabContainer>
                 </SwipeableViews>

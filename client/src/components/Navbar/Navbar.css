@@ -18,6 +18,10 @@
   #title {
     float: left;
   }
+
+  #ModalTitle {
+    color: rgba(255, 255, 255, 0.70);
+  }
   
   #menu {
     float: right;
