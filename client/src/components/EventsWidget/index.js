@@ -2,13 +2,14 @@ import React from 'react';
 import './EventsWidget.css';
 
 const EventsWidget = () => {
-    return <div id="events-widget">
-    <br />
+    return (
+    <div id="events-widget">
         RSVP FOR UPCOMING <br />
         EVENTS NOW!
-        <br /><br />
+        <br />
         <button>RSVP</button>
     </div>
+    )
 }
 
 export default EventsWidget;
