@@ -20,13 +20,14 @@ class CalendarPage extends Component {
 
     render() {
         return (
-            <div id="stupidName">
+            <div id="calendarBody">
                     <Calendar
                         localizer={localizer}
                         defaultDate={new Date()}
-                        defaultView="month"
+                        defaultView={"month"}
                         events={this.state.events}
-                        style={{ height: "100vh" }}
+                        style={{ height: "85vh" }}
+                        
                     />
             </div>
         );
