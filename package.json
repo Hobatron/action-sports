@@ -24,6 +24,7 @@
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
     "mongoose": "^5.5.2",
+    "react-big-calendar": "^0.20.4",
     "react-star-rating-component": "^1.4.1"
   }
 }
