@@ -1,5 +1,6 @@
 const db = require("../model");
 const axios = require('axios');
+const moment = require("moment");
 
 module.exports = function (app) {
 
@@ -133,6 +134,23 @@ module.exports = function (app) {
         }).catch(function (err) {
             console.log(err);
         });
+    });
+
+    // Get future events happening
+    app.get("/api/weeklyCal", function(req, res){
+        const week = [];
+        for(let i=0; i<=6; i++){
+            db.Calendar.find({
+                startDate: moment().add(i, "days").format("L")
+            }).then(function(dayEvent){
+                week.push(dayEvent);
+                if(i == 6){
+                    res.json(week);
+                }
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
     });
 
     // Update an events with same title

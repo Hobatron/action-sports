@@ -1,0 +1,21 @@
+.rbc-calendar {
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
+    opacity: .9;
+    border-style: solid;
+    border-width: 2px;
+    font-weight: bold;
+    box-shadow: 2px 2px;
+}
+.rbc-event-content{
+    visibility: hidden;
+}
+.rbc-event-allday{
+    visibility: hidden;
+}
+.rbc-day-bg.rbc-today {
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 64), rgb(183, 0, 255));
+}
