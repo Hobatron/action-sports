@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const BuyListSchema = new Schema({
     price: Number,
     quantity: Number,
-    cardName: String
+    name: String,
+    image: String,
 });
 
 var BuyList = mongoose.model("BuyList", BuyListSchema);

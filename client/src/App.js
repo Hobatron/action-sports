@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './App.css';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './Pages/Home/index.js';
 import Admin from './Pages/Admin';
 import Calendar from './Pages/Calendar';

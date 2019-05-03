@@ -41,7 +41,6 @@ class AdminCarousel extends React.Component {
     };
 
     handleChange = event => {
-        console.log(event.target.value)
         let stateTarget = event.target.getAttribute("data-target");
         this.setState({ [stateTarget]: event.target.value });
     }

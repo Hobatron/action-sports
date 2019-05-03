@@ -137,17 +137,17 @@ module.exports = function (app) {
     });
 
     // Get future events happening
-    app.get("/api/weeklyCal", function(req, res){
+    app.get("/api/weeklyCal", function (req, res) {
         const week = [];
-        for(let i=0; i<=6; i++){
+        for (let i = 0; i <= 6; i++) {
             db.Calendar.find({
                 startDate: moment().add(i, "days").format("L")
-            }).then(function(dayEvent){
+            }).then(function (dayEvent) {
                 week.push(dayEvent);
-                if(i == 6){
+                if (i == 6) {
                     res.json(week);
                 }
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log(err);
             });
         }
@@ -232,11 +232,8 @@ module.exports = function (app) {
 
     // Post the buy list
     app.post("/api/buylist", function (req, res) {
-        db.BuyList.create({
-            price: req.body.price,
-            quantity: req.body.quantity,
-            cardName: req.body.cardName
-        }).then(function (response) {
+        db.BuyList.create(req.body).then(function (response) {
+            console.log(response)
             res.json(response);
         }).catch(function (err) {
             console.log(err);
