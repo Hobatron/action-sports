@@ -1,0 +1,15 @@
+.autocomplete {
+    padding-top: 10px;
+    width: 100%;
+    background-color: rgba(240, 248, 255, 0.699);
+    z-index: 2;
+    position: absolute;
+    top: 62px;
+    list-style-type: none;
+    max-height: 200px;
+    overflow: scroll;
+}
+
+.autocomplete li:hover {
+    background-color: rgba(168, 168, 168, 0.904);
+}

@@ -19,18 +19,18 @@ module.exports = function (app) {
 
     /*********User API Routes***********/
     //File upload
-    app.post('/api/admin/carousel/upload', function (req, res, next) {
-        //if(res.adminAuthToken === authToken) {}
-        const image = req.body.image;
-        let busboy = new Busboy({
-            headers: req.headers
-        })
+    // app.post('/api/admin/carousel/upload', function (req, res, next) {
+    //     //if(res.adminAuthToken === authToken) {}
+    //     const image = req.body.image;
+    //     let busboy = new Busboy({
+    //         headers: req.headers
+    //     })
 
-        busboy.on('finish', function () {
-            console.log(req.files)
-        });
-        req.pipe(busboy);
-    })
+    //     busboy.on('finish', function () {
+    //         console.log(req.files)
+    //     });
+    //     req.pipe(busboy);
+    // })
 
     // Post user data
     app.post("/api/user", function (req, res) {
@@ -92,8 +92,8 @@ module.exports = function (app) {
     app.post("/api/calendar", function (req, res) {
         db.Calendar.create({
             eventTitle: req.body.eventTitle,
-            startDate: req.body.startDate,
-            startTime: req.body.startTime,
+            startDate: req.body.date,
+            startTime: req.body.time,
             description: req.body.description,
             cost: req.body.cost,
             repeat: req.body.repeat,
@@ -115,12 +115,12 @@ module.exports = function (app) {
     });
 
     // Get events for specific event types
-    app.get("/api/calendar/eventType", function(req, res){
+    app.get("/api/calendar/eventType", function (req, res) {
         db.Calendar.find({
             eventType: req.body.eventType
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
@@ -137,34 +137,33 @@ module.exports = function (app) {
     });
 
     // Get future events happening
-    app.get("/api/weeklyCal", function(req, res){
+    app.get("/api/weeklyCal", function (req, res) {
         const week = [];
-        for(let i=0; i<=6; i++){
+        for (let i = 0; i <= 6; i++) {
             db.Calendar.find({
                 startDate: moment().add(i, "days").format("L")
-            }).then(function(dayEvent){
+            }).then(function (dayEvent) {
                 week.push(dayEvent);
-                if(i == 6){
+                if (i == 6) {
                     res.json(week);
                 }
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log(err);
             });
         }
     });
 
     // Update an events with same title
-    app.put("/api/calendar", function(req, res){
-        db.Calendar.update(
-            {
+    app.put("/api/calendar", function (req, res) {
+        db.Calendar.update({
                 eventTitle: req.body.eventTitle
             },
 
             {
                 $set: {
                     eventTitle: req.body.eventTitle,
-                    startDate: req.body.startDate,
-                    startTime: req.body.startTime,
+                    startDate: req.body.date,
+                    startTime: req.body.time,
                     description: req.body.description,
                     cost: req.body.cost,
                     repeat: req.body.repeat
@@ -174,25 +173,24 @@ module.exports = function (app) {
             {
                 multi: true
             }
-        ).then(function(response){
+        ).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Update one event
-    app.put("/api/calendar/:id", function(req, res){
-        db.Calendar.update(
-            {
+    app.put("/api/calendar/:id", function (req, res) {
+        db.Calendar.update({
                 _id: req.params.id
             },
 
             {
                 $set: {
                     eventTitle: req.body.eventTitle,
-                    startDate: req.body.startDate,
-                    startTime: req.body.startTime,
+                    startDate: req.body.date,
+                    startTime: req.body.time,
                     description: req.body.description,
                     cost: req.body.cost,
                     repeat: req.body.repeat
@@ -202,9 +200,9 @@ module.exports = function (app) {
             {
                 multi: true
             }
-        ).then(function(response){
+        ).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
@@ -234,11 +232,8 @@ module.exports = function (app) {
 
     // Post the buy list
     app.post("/api/buylist", function (req, res) {
-        db.BuyList.create({
-            price: req.body.price,
-            quantity: req.body.quantity,
-            cardName: req.body.cardName
-        }).then(function (response) {
+        db.BuyList.create(req.body).then(function (response) {
+            console.log(response)
             res.json(response);
         }).catch(function (err) {
             console.log(err);
@@ -256,8 +251,7 @@ module.exports = function (app) {
 
     // Update the buy list
     app.put("/api/buylist/:id", function (req, res) {
-        db.BuyList.update(
-            {
+        db.BuyList.update({
                 _id: req.params.id
             },
 
@@ -302,33 +296,33 @@ module.exports = function (app) {
     /*********Carousel API Routes***********/
 
     // Post carousel pics
-    app.post("/api/carousel", function(req, res){
+    app.post("/api/carousel", function (req, res) {
         db.Carousel.create({
-            images: req.body.images,
+            image: req.body.image,
             description: req.body.description
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Get all carousel pics
-    app.get("/api/carousel", function(req, res){
-        db.Carousel.find({}).then(function(response){
+    app.get("/api/carousel", function (req, res) {
+        db.Carousel.find({}).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
 
     // Delete a carousel
-    app.delete("/api/carousel/:id", function(req, res){
+    app.delete("/api/carousel/:id", function (req, res) {
         db.Carousel.deleteOne({
             _id: req.params.id
-        }).then(function(response){
+        }).then(function (response) {
             res.json(response);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });

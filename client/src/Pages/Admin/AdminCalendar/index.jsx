@@ -13,6 +13,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
+import axios from '../api';
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -42,18 +43,50 @@ const styles = theme => ({
 export class AdminCalender extends Component {
     state = {
         catagories: [
-            "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
+            "Select One:", "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
             "KeyForge", "Transformers"
         ],
+        eventTitle: '',
+        description: '',
+        date: '',
+        time: '12:00',
+        eventType: '',
         selectedValue: '',
         value: 0,
+        cost: 0,
+        repeat: false,
     };
 
-    handleDateChange = name => event => {
-        this.setState({ [name]: event.target.checked });
+    handleSubmit = () => {
+        //NEED TO ADD VALIDATION
+        axios.post('/api/calendar', this.state)
+        this.setState({
+            eventTitle: '',
+            description: '',
+            date: '',
+            time: '12:00',
+            eventType: '',
+            selectedValue: '',
+            value: 0,
+            cost: 0,
+            repeat: false
+        })
     };
 
-    handleChange = (event, value) => {
+    getValue = value => this.setState({ cost: value });
+
+    handleRepeatChange = event => {
+        this.setState({
+            repeat: !this.state.repeat
+        });
+    };
+
+    handleChange = (event) => {
+        let stateTarget = event.target.getAttribute("data-target") || event.target.id || "eventType";
+        this.setState({ [stateTarget]: event.target.value });
+    };
+
+    handleTabChange = (event, value) => {
         this.setState({ value });
     };
 
@@ -69,7 +102,7 @@ export class AdminCalender extends Component {
                 <AppBar position="static" color="default">
                     <Tabs
                         value={this.state.value}
-                        onChange={this.handleChange}
+                        onChange={this.handleTabChange}
                         indicatorColor="primary"
                         textColor="primary"
                         variant="fullWidth"
@@ -84,15 +117,17 @@ export class AdminCalender extends Component {
                     onChangeIndex={this.handleChangeIndex}
                 >
                     <TabContainer dir={theme.direction}>
-                        <MDBInput label="Event Name" className="d-inline-block" outline />
-                        <MDBInput type="textarea" label="Details" outline />
+                        <MDBInput label="Event Title" value={this.state.eventTitle} data-target={'eventTitle'} onChange={this.handleChange} className="d-inline-block" outline />
+                        <MDBInput value={this.state.description} data-target={'description'} onChange={this.handleChange} type="textarea" label="Details" outline />
                         <MDBRow>
                             <MDBCol>
                                 <TextField
                                     id="date"
                                     label="Date"
                                     type="date"
-                                    defaultValue={null}
+                                    value={this.state.date}
+                                    data-target={'startDate'}
+                                    onChange={this.handleChange}
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
@@ -103,7 +138,9 @@ export class AdminCalender extends Component {
                                     id="time"
                                     label="Start Time"
                                     type="time"
-                                    defaultValue="12:00"
+                                    value={this.state.time}
+                                    data-target={'startTime'}
+                                    onChange={this.handleChange}
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
@@ -117,18 +154,17 @@ export class AdminCalender extends Component {
                             <MDBCol>
                                 <FormControlLabel
                                     control={<Checkbox
-                                        onChange={this.handleDateChange('checkedA')}
-                                        value="repeat"
-                                        label="Male"
+                                        onChange={this.handleRepeatChange}
                                     />}
                                     label="Repeat"
                                 />
                             </MDBCol>
                             <MDBCol>
                                 Cost
-                                            <MDBInputSelect
+                                <MDBInputSelect
                                     precision={2}
-                                    value={0}
+                                    value={this.state.cost}
+                                    getValue={this.getValue}
                                     step={0.25}
                                     className="mb-2"
                                 />
@@ -136,19 +172,17 @@ export class AdminCalender extends Component {
                         </MDBRow>
                         <MDBRow>
                             <MDBCol>
-                                <MDBBtn className="ml-2" color="light-green">Add Event</MDBBtn>
+                                <MDBBtn className="ml-2" onClick={this.handleSubmit} color="light-green">Add Event</MDBBtn>
                             </MDBCol>
                             <MDBCol>
                                 <FormControl>
                                     <InputLabel shrink htmlFor="select-multiple-native">
                                         Event Type
-                                                </InputLabel>
+                                    </InputLabel>
                                     <Select
-                                        multiple
                                         native
-                                        inputProps={{
-                                            id: 'select-multiple-native',
-                                        }}
+                                        value={this.state.eventType}
+                                        onChange={this.handleChange}
                                     >
                                         {this.state.catagories.map(name => {
                                             return (

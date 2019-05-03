@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CarouselSchema = new Schema({
-    images: {
+    image: {
         type: String
     },
     description: {
         type: String,
-        minlength: 5,
-        maxlength: 10
+        minlength: 3,
+        maxlength: 15
     }
 });
 

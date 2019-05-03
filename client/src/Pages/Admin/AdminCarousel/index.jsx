@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { MDBInput, MDBCol, MDBRow, MDBBtn } from 'mdbreact';
+import axios from '../api';
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -35,14 +36,30 @@ const styles = theme => ({
 class AdminCarousel extends React.Component {
     state = {
         value: 0,
+        description: '',
+        image: '',
     };
 
-    handleChange = (event, value) => {
+    handleChange = event => {
+        let stateTarget = event.target.getAttribute("data-target");
+        this.setState({ [stateTarget]: event.target.value });
+    }
+
+    handleTabChange = (event, value) => {
         this.setState({ value });
     };
 
     handleChangeIndex = index => {
         this.setState({ value: index });
+    };
+
+    handleSubmit = () => {
+        //NEED TO ADD VALIDATION
+        axios.post('/api/carousel', this.state)
+        this.setState({
+            description: '',
+            image: '',
+        })
     };
 
     render() {
@@ -52,7 +69,7 @@ class AdminCarousel extends React.Component {
                 <AppBar position="static" color="default">
                     <Tabs
                         value={this.state.value}
-                        onChange={this.handleChange}
+                        onChange={this.handleTabChange}
                         indicatorColor="primary"
                         textColor="primary"
                         variant="fullWidth"
@@ -67,22 +84,24 @@ class AdminCarousel extends React.Component {
                     onChangeIndex={this.handleChangeIndex}
                 >
                     <TabContainer dir={theme.direction}>
-                        <MDBInput type="textarea" label="Details" outline />
+                        <MDBInput type="textarea" value={this.state.description} data-target={'description'} onChange={this.handleChange} label="Details" outline />
                         <MDBRow>
                             <MDBCol>
+                                <span className="muted">to be added</span>
                                 <input
+                                    disabled
                                     accept="image/*"
                                     className={classes.input}
                                     id="contained-button-file"
                                     type="file"
+                                // onChange={this.handleChange}
                                 />
                             </MDBCol>
                             <MDBCol>
-                                <MDBBtn color="light-green">Add Item</MDBBtn>
+                                <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
                             </MDBCol>
                         </MDBRow>
-
-
+                        <MDBInput label="Image URL:" value={this.state.image} data-target={'image'} onChange={this.handleChange} className="d-inline-block" outline />
                     </TabContainer>
                     <TabContainer dir={theme.direction}>Item Two</TabContainer>
                 </SwipeableViews>
