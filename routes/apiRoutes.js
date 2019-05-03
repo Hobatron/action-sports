@@ -138,19 +138,19 @@ module.exports = function (app) {
 
     // Get future events happening
     app.get("/api/weeklyCal", function(req, res){
-        let week = [];
+        const week = [];
         for(let i=0; i<=6; i++){
             db.Calendar.find({
                 startDate: moment().add(i, "days").format("L")
-            }).then((response) => {
-                week.push(response);
-                console.log(week);
-                
+            }).then(function(dayEvent){
+                week.push(dayEvent);
+                if(i == 6){
+                    res.json(week);
+                }
             }).catch(function(err){
                 console.log(err);
             });
         }
-        res.json(week);
     });
 
     // Update an events with same title
