@@ -35,7 +35,7 @@
     width: 100%;
     background-color: rgba(255, 0, 0, 0.35);
     position: relative;
-    top: 17px;
+    top: 24px;
     font-size: 15px;
   }
 
@@ -77,7 +77,7 @@
       width: 100%;
       background-color: rgba(255, 0, 0, 0.35);
       position: relative;
-      top: 12px;
+      top: 28px;
       font-size: 9.25px;
     }
   }

@@ -7,6 +7,7 @@ import axios from './api';
 
 const CarouselPage = () => {
   return (
+    <div id="carousel-div">
     <MDBContainer className="front-page-carousel">
       <MDBCarousel activeItem={1} length={1} showControls={true} showIndicators={true} className="z-depth-1">
         <MDBCarouselInner>
@@ -29,6 +30,7 @@ const CarouselPage = () => {
         </MDBCarouselInner>
       </MDBCarousel>
     </MDBContainer>
+    </div>
   );
 }
 

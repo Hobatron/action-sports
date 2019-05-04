@@ -14,21 +14,21 @@ const Home = () => {
                         <div className="col-sm-12 col-md-6 col-lg-4">
                               <FacebookWidget />
                         </div>
-                        <div className="col-sm-12 col-md-6 col-lg-8">
+                        <div className="col-sm-12 col-md-12 col-lg-8">
                               <Carousel />
                         </div>
                   </div>
                   <div className="row justify-content-end">
-                        <div className="col-sm-12 col-md-6 col-lg-4 col align-self-end">
+                        <div className="col-sm-12 col-md-6 col-lg-4">
+                              <EventsWidget />
+                        </div>
+                        <div className="col-sm-12 col-md-6 col-lg-4 align-self-end">
                               <CalendarWidget />
                         </div>
-                        <div className="col-sm-12 col-md-6 col-lg-4">
-                              <ReviewsWidget />
-                        </div>
                   </div>
-                  <div className="row justify-content-md-end justify-content-lg-start">
-                        <div className="col-sm-12 col-md-6 col-lg-4 align-self-md-end">
-                              <EventsWidget />
+                  <div className="row justify-content-lg-center">
+                        <div className="col-sm-12 col-md-6 col-lg-4 align-self-center">
+                              <ReviewsWidget />
                         </div>
                   </div>
             </div >

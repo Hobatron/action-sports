@@ -1,7 +1,7 @@
 #events-widget {
-    margin-top: -390px;
+    margin-top: -640px;
     padding-top: 20px;
-    height: 290px;
+    height: 250px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0px 5px 20px black;
@@ -12,6 +12,7 @@
     font-weight: 800;
     letter-spacing: 5px;
     /* margin-bottom: 100px; */
+    line-height: 40px;
   }
 
 button {
@@ -19,25 +20,27 @@ button {
   border-radius: 12.5px;
   color: black;
   box-shadow: 0px 5px 10px black;
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 1200px) {
   #events-widget {
-    margin-top: -320px;
-    margin-bottom: 200px;
+    margin-top: -640px;
+    margin-left: 10px;
   }
 }
 
 @media only screen and (max-width: 991px) {
   #events-widget {
-    clear: both;
-    margin-top: -670px;
+    /* clear: both; */
+    margin-top: 20px;
+    margin-left: default;
   }
 }
 
 @media only screen and (max-width: 767px) {
     #events-widget {
       margin-top: 20px;
-      margin-bottom: 50px;
+      margin-bottom: 0px;
     }
 }
