@@ -12,6 +12,8 @@
     "react-big-calendar": "^0.20.4",
     "react-dom": "^16.7.0",
     "react-facebook": "^8.0.4",
+    "react-mailto": "^0.4.0",
+    "react-native-deep-link": "^0.2.9",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.0.5",
