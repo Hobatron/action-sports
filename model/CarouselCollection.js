@@ -8,7 +8,7 @@ const CarouselSchema = new Schema({
     description: {
         type: String,
         minlength: 3,
-        maxlength: 15
+        maxlength: 35
     }
 });
 
