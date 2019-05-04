@@ -1,0 +1,36 @@
+#individual-event {
+    font-family: "Lucida Console", Monaco, monospace;
+    text-align: center;
+    font-size: 25px;
+    height: fit-content;
+    padding-top: 5px;
+    width: 100%;
+    /* background-color: rgba(255, 0, 0, 0.35); */
+    color: rgba(255, 255, 255, 0.75);
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    border-width: 5px;
+    font-weight: bold;
+}
+
+#event-name {
+    /* background-color: rgba(255, 0, 0, 0.35); */
+}
+
+#event-time {
+    font-size: 15px;
+    padding: 10px;
+    color: orange;
+
+}
+
+#event-description {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
+    font-size: 17.5px;
+    padding: 10px;
+}
+
+#event-cost {
+    padding: 10px;
+}

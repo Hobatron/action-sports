@@ -4,7 +4,8 @@ import './EventsWidget.css';
 const EventsWidget = () => {
     return (
     <div id="events-widget">
-        RSVP FOR UPCOMING <br />
+        RSVP FOR<br />
+        UPCOMING<br />
         EVENTS NOW!
         <br />
         <button>RSVP</button>
