@@ -1,0 +1,25 @@
+#buylist-container {
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    color: white;
+    font-family: "Lucida Console", Monaco, monospace;
+    margin-bottom: 40px;
+}
+
+button {
+    margin-left: 10px;
+}
+
+#card-display {
+    height: 400px;
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    margin: auto;
+    margin-top: 40px;
+}
