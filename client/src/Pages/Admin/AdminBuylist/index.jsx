@@ -73,7 +73,6 @@ export class AdminBuylist extends Component {
     };
 
     cardPicked = cardDetails => {
-
         this.setState({
             disabled: false,
             price: cardDetails.price,

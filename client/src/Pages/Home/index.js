@@ -2,7 +2,7 @@ import React from "react";
 import FacebookWidget from '../../components/FacebookWidget';
 import CalendarWidget from '../../components/CalendarWidget';
 import ReviewsWidget from '../../components/ReviewsWidget';
-import Carousel from '../../components/Carousel';
+import CarouselWidget from '../../components/Carousel';
 import EventsWidget from '../../components/EventsWidget';
 import './Home.css';
 
@@ -15,7 +15,7 @@ const Home = () => {
                               <FacebookWidget />
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-8">
-                              <Carousel />
+                              <CarouselWidget />
                         </div>
                   </div>
                   <div className="row justify-content-end">
