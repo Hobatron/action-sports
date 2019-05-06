@@ -7,7 +7,6 @@ const CarouselSchema = new Schema({
     },
     description: {
         type: String,
-        minlength: 3,
         maxlength: 35,
     },
     color: {

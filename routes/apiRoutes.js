@@ -90,9 +90,11 @@ module.exports = function (app) {
 
     // Post new event
     app.post("/api/calendar", function (req, res) {
+        let date = req.body.date.split('-');
+        date = date[1] + '-' + date[2] + '-' + date[0]
         db.Calendar.create({
-            eventTitle: req.body.eventTitle,
-            startDate: req.body.date,
+            title: req.body.eventTitle,
+            start: date,
             startTime: req.body.time,
             description: req.body.description,
             cost: req.body.cost,
