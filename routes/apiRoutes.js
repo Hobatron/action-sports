@@ -153,7 +153,7 @@ module.exports = function (app) {
         }
     });
 
-    // Update an events with same title
+    // Update events with same title
     app.put("/api/calendar", function (req, res) {
         db.Calendar.update({
                 eventTitle: req.body.eventTitle
@@ -233,7 +233,6 @@ module.exports = function (app) {
     // Post the buy list
     app.post("/api/buylist", function (req, res) {
         db.BuyList.create(req.body).then(function (response) {
-            console.log(response)
             res.json(response);
         }).catch(function (err) {
             console.log(err);
@@ -299,7 +298,8 @@ module.exports = function (app) {
     app.post("/api/carousel", function (req, res) {
         db.Carousel.create({
             image: req.body.image,
-            description: req.body.description
+            description: req.body.description,
+            color: req.body.color || "white",
         }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
