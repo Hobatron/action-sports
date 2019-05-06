@@ -3,13 +3,15 @@ const Schema = mongoose.Schema;
 
 const CarouselSchema = new Schema({
     image: {
-        type: String
+        type: String,
     },
     description: {
         type: String,
-        minlength: 3,
-        maxlength: 15
-    }
+        maxlength: 35,
+    },
+    color: {
+        type: String,
+    },
 });
 
 const Carousel = mongoose.model("Carousel", CarouselSchema);

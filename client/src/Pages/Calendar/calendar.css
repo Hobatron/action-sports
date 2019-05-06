@@ -11,10 +11,10 @@
     box-shadow: 2px 2px;
 }
 .rbc-event-content{
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 .rbc-event-allday{
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 .rbc-day-bg.rbc-today {
     background-image: linear-gradient(to bottom right, rgb(0, 8, 114), rgb(4, 165, 157));

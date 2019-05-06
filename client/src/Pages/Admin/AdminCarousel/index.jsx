@@ -38,6 +38,7 @@ class AdminCarousel extends React.Component {
         value: 0,
         description: '',
         image: '',
+        color: '',
     };
 
     handleChange = event => {
@@ -59,6 +60,7 @@ class AdminCarousel extends React.Component {
         this.setState({
             description: '',
             image: '',
+            color: '',
         })
     };
 
@@ -98,10 +100,12 @@ class AdminCarousel extends React.Component {
                                 />
                             </MDBCol>
                             <MDBCol>
-                                <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
+                                <MDBInput label="#Color" value={this.state.color} data-target={'color'} onChange={this.handleChange} className="d-inline-block" outline />
                             </MDBCol>
                         </MDBRow>
                         <MDBInput label="Image URL:" value={this.state.image} data-target={'image'} onChange={this.handleChange} className="d-inline-block" outline />
+                        <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
+
                     </TabContainer>
                     <TabContainer dir={theme.direction}>Item Two</TabContainer>
                 </SwipeableViews>
