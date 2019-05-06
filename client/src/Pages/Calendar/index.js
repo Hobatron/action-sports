@@ -37,11 +37,12 @@ class CalendarPage extends Component {
 
     render() {
         return (
-            <div id="calendarBody">
+            <div id= "calendar">
                     <Calendar
                         localizer={localizer}
                         defaultDate={new Date()}
                         defaultView={"month"}
+                        views={['month']}
                         events={this.state.events}
                         style={{ height: "85vh" }}
                         onSelectEvent={this.handleEventClick}

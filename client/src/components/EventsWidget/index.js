@@ -8,7 +8,7 @@ const EventsWidget = () => {
         UPCOMING<br />
         EVENTS NOW!
         <br />
-        <button>RSVP</button>
+        <a href="mailto:none@none.com"><button>RSVP</button></a>
     </div>
     )
 }
