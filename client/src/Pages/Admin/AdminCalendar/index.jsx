@@ -14,6 +14,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import axios from '../api';
+import Calendar from 'react-big-calendar';
+import './calendar.css';
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import moment from "moment";
+
+const localizer = Calendar.momentLocalizer(moment);
+
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -55,7 +62,24 @@ export class AdminCalender extends Component {
         value: 0,
         cost: 0,
         repeat: false,
+        events: [],
     };
+
+    componentDidMount() {
+        axios.get("api/calendar/",
+            (response) => {
+                this.setState({
+                    events: response
+                }, () => {
+                    console.log(this.state.events)
+                })
+            }
+        )
+    }
+
+    handleEventClick = (event) => {
+        console.log(event)
+    }
 
     handleSubmit = () => {
         //NEED TO ADD VALIDATION
@@ -196,7 +220,26 @@ export class AdminCalender extends Component {
                             </MDBCol>
                         </MDBRow>
                     </TabContainer>
-                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                    <div className="test">
+                        <TabContainer dir={theme.direction}>
+                            {this.state.events.length > 0 &&
+                                <div id="calendar">
+                                    <Calendar
+                                        localizer={localizer}
+                                        defaultDate={new Date()}
+                                        defaultView={"month"}
+                                        views={['month']}
+                                        events={this.state.events}
+                                        style={{ height: "380px" }}
+                                        onSelectEvent={this.handleEventClick}
+                                        popup={true}
+                                    />
+                                </div>
+                            }
+
+                        </TabContainer>
+                    </div>
+
                 </SwipeableViews>
             </div>
         )
