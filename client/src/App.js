@@ -8,6 +8,7 @@ import Login from "./components/auth/Login";
 import Home from './Pages/Home/index.js';
 import Admin from './Pages/Admin';
 import Calendar from './Pages/Calendar';
+import Buylist from "./Pages/Buylist";
 
 
 function onAuthRequired({history}){
@@ -39,6 +40,19 @@ class App extends Component {
               </div>
             </Security>
           </Router>
+
+        <Router>
+          <Navbar />
+
+          <div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/calendar" component={Calendar} />
+          {/* <Route path="/buylist" component={BuyList} /> */}
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/buylist" component={Buylist} />
+          </div>
+        </Router>
+
       </div>
     );
   }

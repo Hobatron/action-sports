@@ -5,9 +5,10 @@ import { withAuth } from '@okta/okta-react';
 import FacebookWidget from '../../components/FacebookWidget';
 import CalendarWidget from '../../components/CalendarWidget';
 import ReviewsWidget from '../../components/ReviewsWidget';
-import Carousel from '../../components/Carousel';
+import CarouselWidget from '../../components/Carousel';
 import EventsWidget from '../../components/EventsWidget';
 import './Home.css';
+
 
 
 export default withAuth(class Home extends Component {
@@ -58,6 +59,22 @@ export default withAuth(class Home extends Component {
                               <div className="col-sm-12 col-md-12 col-lg-8">
                                     <Carousel />
                               </div>
+
+const Home = () => {
+      return (
+            <div className="container">
+                  <div className="row">
+                        <div className="col-sm-12 col-md-6 col-lg-4">
+                              <FacebookWidget />
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-lg-8">
+                              <CarouselWidget />
+                        </div>
+                  </div>
+                  <div className="row justify-content-end">
+                        <div className="col-sm-12 col-md-6 col-lg-4">
+                              <EventsWidget />
+
                         </div>
                         <div className="row justify-content-end">
                               <div className="col-sm-12 col-md-6 col-lg-4">
