@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import { withAuth } from '@okta/okta-react';
+
 import './admin.css'
 import { MDBContainer, MDBRow, MDBInput, MDBBtn } from 'mdbreact';
 import Radio from '@material-ui/core/Radio';
@@ -9,15 +12,45 @@ import AdminBuylist from './AdminBuylist';
 
 
 
-export class Admin extends Component {
+export default withAuth(class Admin extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            catagories: [
+                "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
+                "KeyForge", "Transformers"
+            ],
+            selectedValue: '',
+            authenticated: null
+        };
+        this.checkAuthentication = this.checkAuthentication.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+    }
+    
 
-    state = {
-        catagories: [
-            "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
-            "KeyForge", "Transformers"
-        ],
-        selectedValue: '',
-    };
+    checkAuthentication = async() => {
+        const authenticated = await this.props.auth.isAuthenticated();
+        if (authenticated !== this.state.authenticated) {
+            this.setState({ authenticated });
+        }
+    }
+
+    componentDidMount() {
+        this.checkAuthentication();
+    }
+      
+    componentDidUpdate() {
+        this.checkAuthentication();
+    }
+      
+    login() {
+        this.props.auth.login('/');
+    }
+      
+    logout() {
+        this.props.auth.logout('/');
+    }
 
     getPickerValue = (value) => {
         console.log(value);
@@ -31,6 +64,12 @@ export class Admin extends Component {
 
 
     render() {
+        if (this.state.authenticated === null) return null;
+            
+        const button = this.state.authenticated ?
+        <button onClick={this.logout}>Logout</button> :
+        <button onClick={this.login}>Login</button>;
+
         return (
             <MDBContainer className="mt-5">
                 <MDBRow className="form-group pl-5 pr-5 pt-4">
@@ -88,9 +127,8 @@ export class Admin extends Component {
                         </div>
                     </div>
                 </MDBRow>
+                {button}
             </MDBContainer >
         );
     };
-};
-
-export default Admin;
+});

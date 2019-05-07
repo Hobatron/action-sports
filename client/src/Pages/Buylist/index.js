@@ -18,23 +18,29 @@ class Buylist extends Component {
         return (
             <div className="container">
                 <div id="buylist-container">
-                    <div className="row">
-                        <div className="col-12">
-                            <div id="buylist-div">
-                                Search for cards:<br /><br />
-                                <form>
-                                    <MTGAutoComplete 
-                                        return={this.getCardName}
-                                    /><br />
-                                    <div id="card-display">
-                                        <Card />
+                <div className="row">
+                       <div className="col-3">
+                       <div id="buylist-title">
+                       <h2>Buy List</h2></div>
+                       <br />
+                           <div id="Searchbar">
+                               Search Buylist:<br />
+                               <form>
+                                   <MTGAutoComplete
+                                       return={this.getCardName}
+                                   /><br />
+                                   </form>
                                     </div>
-                                </form>
+                                    </div>
+                                    <div className="col-9">
+                                   <div id="card-display">
+                                       <Card />
+                                   </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>
         )
     }
 }

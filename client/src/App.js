@@ -31,7 +31,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/calendar" component={Calendar} />
 
-                {/* <Route path="/buylist" component={BuyList} /> */}
+                <Route path="/buylist" component={Buylist} />
 
                 <SecureRoute path="/admin" component={Admin} />
                 <Route path='/login' render={() => <Login baseUrl='https://dev-409099.okta.com' />} />
