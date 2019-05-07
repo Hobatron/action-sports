@@ -15,6 +15,13 @@ export class Navbar extends Component {
     });
   }
   render() {
+
+    return (<div id="as-nav-bar">
+      <div className="container">
+        <div id="title">ACTION SPORTS AND GAMING</div>
+        <div id="menu">
+           EVENTS | BUY LIST</div>
+
     return (
       <div id="as-nav-bar">
         <div className="container">
@@ -22,6 +29,7 @@ export class Navbar extends Component {
             <div id="menu"><Link to="/calendar">EVENTS</Link> | <Link to="/buylist">BUY LIST</Link> | <Link to="/admin">LOG-IN</Link></div>
         </div>
         <div id="address">6041 NE ANTIOCH RD GLADSTONE, MO 64119 | (816) 455-6319</div>
+
       </div>
     )
   }
