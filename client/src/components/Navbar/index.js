@@ -16,12 +16,6 @@ export class Navbar extends Component {
   }
   render() {
 
-    return (<div id="as-nav-bar">
-      <div className="container">
-        <div id="title">ACTION SPORTS AND GAMING</div>
-        <div id="menu">
-           EVENTS | BUY LIST</div>
-
     return (
       <div id="as-nav-bar">
         <div className="container">
