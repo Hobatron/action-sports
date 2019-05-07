@@ -40,23 +40,8 @@ class App extends Component {
               </div>
             </Security>
           </Router>
-
-        <Router>
-          <Navbar />
-
-          <div>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/calendar" component={Calendar} />
-          {/* <Route path="/buylist" component={BuyList} /> */}
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/buylist" component={Buylist} />
-          </div>
-        </Router>
-
       </div>
     );
   }
 }
-
 export default App;
-
