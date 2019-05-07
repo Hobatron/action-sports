@@ -5,23 +5,17 @@
     margin-right: 5%;
     margin-left: 5%;
     opacity: .9;
-    border-style: solid;
-    border-width: 2px;
+    box-shadow: 0px 5px 20px 20px black;    
     font-weight: bold;
     box-shadow: 2px 2px;
 }
 .rbc-event-content{
-    /* visibility: hidden; */
+    /* background-color: blue */
 }
 .rbc-event-allday{
     /* visibility: hidden; */
 }
 .rbc-day-bg.rbc-today {
-    background-image: linear-gradient(to bottom right, rgb(0, 8, 114), rgb(4, 165, 157));
+    background-color: rgb(212, 220, 255);
     opacity: .5;
-    border-style: solid;
-    border-width: 1.5px;
 }
-/* .rbc-btn-group {
-    box-shadow: 0px 0px 0px;
-} */

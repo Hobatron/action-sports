@@ -9,13 +9,7 @@ const localizer = Calendar.momentLocalizer(moment);
 
 class CalendarPage extends Component {
     state = {
-        events: [
-            {
-                title: "Some title",
-                start: "05-29-2019",
-                end:"05-29-2019",
-            }
-        ]
+        events: []
     };
 
     componentDidMount() {
