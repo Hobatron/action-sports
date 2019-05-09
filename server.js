@@ -30,21 +30,6 @@ mongoose.connect("mongodb://localhost/action-sports-db", {
 apiRoutes(app);
 
 
-/* Testing the week display through console.log */
-
-// const day = moment().day();
-// const today = moment().day(day).format("MMMM Do YYYY");
-// console.log(today);
-// const week = [];
-// for(let i=0; i<=6; i++){
-//     week.push(moment().day(i).format("L"));
-// }
-// console.log(week.join(", "));
-
-/* End of the test */
-
-// Send every other request to the React app
-// Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

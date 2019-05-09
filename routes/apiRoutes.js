@@ -91,7 +91,7 @@ module.exports = function (app) {
     // Post new event
     app.post("/api/calendar", function (req, res) {
         let date = req.body.date.split('-');
-        date = date[1] + '-' + date[2] + '-' + date[0]
+        date = date[1] + '/' + date[2] + '/' + date[0]
         db.Calendar.create({
             title: req.body.eventTitle,
             start: date,
@@ -143,9 +143,11 @@ module.exports = function (app) {
         const week = [];
         for (let i = 0; i <= 6; i++) {
             db.Calendar.find({
-                startDate: moment().add(i, "days").format("L")
+                start: moment().add(i, "days").format("L")
             }).then(function (dayEvent) {
-                week.push(dayEvent);
+                if (dayEvent.length > 0) {
+                    week.push(dayEvent);
+                }
                 if (i == 6) {
                     res.json(week);
                 }

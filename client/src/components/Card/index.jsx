@@ -1,26 +1,13 @@
 import React, { Component } from "react";
-import api from "./api";
 import "./Card.css";
 import { MDBCol, MDBRow, MDBBtn } from "mdbreact";
 
 export class Cards extends Component {
-	state = {
-		buyList: [],
-	}
-	componentDidMount () {
-		api.get((res) => {
-			this.setState({
-				buyList: res
-			},() => {
-				console.log(this.state)
-			})
-		})
-	}
 
   	render() {
     	return (
 			<div>
-				{this.state.buyList.map(card => {
+				{this.props.buylist.map(card => {
 					return (
 						<div key={card.name} className="cardWrapper mt-3">
 						<MDBRow>
