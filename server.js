@@ -19,10 +19,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-mongoose.connect("mongodb://localhost/action-sports-db", {
+mongoose.connect("mongodb://asw:aswebdev1@ds137206.mlab.com:37206/heroku_2ztlncnk", {
   useNewUrlParser: true
 });
-
+//mongodb:localhost/action-sports-db
 
 // Define API routes here
 
