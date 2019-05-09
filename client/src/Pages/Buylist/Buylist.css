@@ -10,9 +10,8 @@
  }
 
  #buylist-title {
-     padding-top: 8%;
     color: white;
-    font-size: 26px;
+    font-size: 25px;
     font-family: "Lucida Console", Monaco, monospace;
    
  }
@@ -25,4 +24,9 @@
     height: 100%;
     width: 100%;
     display: inline-block;
+ }
+
+ #Searchbar {
+    width: 50%;
+    margin: auto;
  }

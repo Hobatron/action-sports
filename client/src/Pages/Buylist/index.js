@@ -5,7 +5,7 @@ import Card from '../../components/Card';
 import MTGAutoComplete from '../../components/MTGAutoComplete';
 
 class Buylist extends Component {
-    state={
+    state = {
         cardName: "",
         cards: []
     }
@@ -18,29 +18,31 @@ class Buylist extends Component {
         return (
             <div className="container">
                 <div id="buylist-container">
-                <div className="row">
-                       <div className="col-3">
-                       <div id="buylist-title">
-                       <h2>Buy List</h2></div>
-                       <br />
-                           <div id="Searchbar">
-                               Search Buylist:<br />
-                               <form>
-                                   <MTGAutoComplete
-                                       return={this.getCardName}
-                                   /><br />
-                                   </form>
-                                    </div>
-                                    </div>
-                                    <div className="col-9">
-                                   <div id="card-display">
-                                       <Card />
-                                   </div>
-
+                    <div className="row">
+                        <div className="col-12">
+                            <div id="buylist-title">
+                                <h2>BUY LIST</h2></div>
+                            <br />
+                            <div id="Searchbar">
+                                Search Buylist:<br />
+                                <form>
+                                    <MTGAutoComplete
+                                        return={this.getCardName}
+                                    /><br />
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <div id="card-display">
+                                <Card />
+                            </div>
+
+                        </div>
                     </div>
+                </div>
+            </div>
         )
     }
 }
