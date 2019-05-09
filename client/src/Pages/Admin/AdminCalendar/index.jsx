@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MDBRow, MDBInput, MDBCol, MDBInputSelect, MDBBtn } from 'mdbreact';
+import { MDBRow, MDBInput, MDBCol, MDBInputSelect, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
@@ -13,7 +13,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
-import axios from '../api';
+import api from '../api';
 import Calendar from 'react-big-calendar';
 import './calendar.css';
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -63,27 +63,49 @@ export class AdminCalender extends Component {
         cost: 0,
         repeat: false,
         events: [],
+        modal: false,
+        clickedEvent: {}
     };
 
     componentDidMount() {
-        axios.get("api/calendar/",
+        api.get("api/calendar/",
             (response) => {
                 this.setState({
-                    events: response
-                }, () => {
-                    console.log(this.state.events)
-                })
+                    events: response,
+                });
             }
-        )
-    }
+        );
+    };
+
+    deleteEvent = () => {
+        api.delete(`api/calendar/${this.state.clickedEvent._id}`);
+
+        // Live calendar update: derenders?
+        // for (let i = 0; i < this.state.events.length; i++) {
+        //     if (this.state.clickedEvent._id === this.state.events[i]._id) {
+        //         i = this.state.events.length;
+        //         this.setState({
+        //             events: this.state.events.splice(i, 1)
+        //         },console.log(this.state.events));
+        //     };
+        // };
+    };
 
     handleEventClick = (event) => {
+        if (!event.title) {
+            event = this.state.clickedEvent;
+        };
+
         console.log(event)
-    }
+        this.setState({
+            modal: !this.state.modal,
+            clickedEvent: event,
+        });
+    };
 
     handleSubmit = () => {
         //NEED TO ADD VALIDATION
-        axios.post('/api/calendar', this.state)
+        api.post('/api/calendar', this.state)
         this.setState({
             eventTitle: '',
             description: '',
@@ -94,7 +116,7 @@ export class AdminCalender extends Component {
             value: 0,
             cost: 0,
             repeat: false
-        })
+        });
     };
 
     getValue = value => this.setState({ cost: value });
@@ -239,10 +261,25 @@ export class AdminCalender extends Component {
 
                         </TabContainer>
                     </div>
-
                 </SwipeableViews>
+
+                <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                    <MDBModalHeader toggle={this.toggle}>MDBModal title</MDBModalHeader>
+                    <MDBModalBody>
+                        PERMANENTLY DELETE?:<br />
+                        {this.state.clickedEvent.title}<br />
+                        {this.state.clickedEvent.start}<br />
+                        {this.state.clickedEvent.description}<br />
+                        {this.state.clickedEvent.startTime}<br />
+                        {this.state.clickedEvent.cost}<br />
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                        <MDBBtn color="secondary" onClick={this.handleEventClick}>Close</MDBBtn>
+                        <MDBBtn color="danger" onClick={this.deleteEvent}>DELETE</MDBBtn>
+                    </MDBModalFooter>
+                </MDBModal>
             </div>
         )
     }
 }
-export default withStyles(styles, { withTheme: true })(AdminCalender)
+export default withStyles(styles, { withTheme: true })(AdminCalender);

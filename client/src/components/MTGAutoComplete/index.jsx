@@ -7,6 +7,7 @@ export class MTGAutoComplete extends Component {
 	state = {
 		cardQ: '',
 		searchResults: [],
+		hiddenResults: [],
 	}
 
 	handleChange = event => {
@@ -20,6 +21,20 @@ export class MTGAutoComplete extends Component {
 			})
 		});
 	};
+
+	handleBlur = () => {
+		this.setState({
+			searchResults: [],
+			hiddenResults: this.state.searchResults,
+		})
+	}
+
+	handleFocus = () => {
+		this.setState({
+			searchResults: this.state.hiddenResults,
+			hiddenResults: [],
+		})
+	}
 
 	handleCardClick = event => {
 		let chosenCard = event.target.textContent;
@@ -44,6 +59,8 @@ export class MTGAutoComplete extends Component {
 					label="Card Name"
 					value={this.state.cardQ}
 					onChange={this.handleChange}
+					onBlur={this.handleBlur}
+					onFocus={this.handleFocus}
 					outline
 				/>
 				{this.state.searchResults.length > 0 &&

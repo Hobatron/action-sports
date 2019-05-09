@@ -16,4 +16,10 @@ export default {
                 func(res.data);
             });
     },
+    delete: (url) => {
+        axios.delete(url)
+            .then((res) => {
+                return res.data;
+            });
+    }
 }

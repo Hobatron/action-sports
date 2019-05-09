@@ -19,10 +19,10 @@ export class Navbar extends Component {
     return (
       <div id="as-nav-bar">
         <div className="container">
-            <div id="title"><Link to="/">ACTION SPORTS AND GAMING</Link></div>
-            <div id="menu"><Link to="/calendar">EVENTS</Link> | <Link to="/buylist">BUY LIST</Link></div>
+            <div id="title"><Link class="link" to="/">ACTION SPORTS AND GAMING</Link></div>
+            <div id="menu"><Link class="link" to="/calendar">EVENTS</Link> | <Link class="link" to="/buylist">BUY LIST</Link></div>
         </div>
-        <div id="address">6041 NE ANTIOCH RD GLADSTONE, MO 64119 | (816) 455-6319</div>
+        <div id="address"></div>
 
       </div>
     )
