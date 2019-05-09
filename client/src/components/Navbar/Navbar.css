@@ -30,7 +30,7 @@
   
   #address {
     clear: both;
-    color: black;
+    /* color: rgba(255, 255, 255, 0.75); */
     height: 17px;
     line-height: 19px;
     width: 100%;
@@ -38,6 +38,10 @@
     position: relative;
     top: 24px;
     font-size: 15px;
+  }
+
+  .link {
+    color: rgba(255, 255, 255, 0.75);
   }
 
   @media only screen and (max-width: 767px) {
