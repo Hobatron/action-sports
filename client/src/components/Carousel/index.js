@@ -43,7 +43,7 @@ class CarouselWidget extends Component {
           {this.state.items.map(item => {
             return (
               <Carousel.Item key={item.name} className="carousel">
-                <img className="d-block w-100" src={item.image} />
+                <img className="d-block w-100" src={item.image} alt=""/>
                 <Carousel.Caption>
                   <h1 style={{ fontSize: 50, color: item.color }}>{item.description}</h1>
                 </Carousel.Caption>

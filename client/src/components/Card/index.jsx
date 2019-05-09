@@ -12,7 +12,7 @@ export class Cards extends Component {
 						<div key={card.name} className="cardWrapper mt-3">
 						<MDBRow>
 							<MDBCol>
-								<img className="card" src={card.image} />
+								<img className="card" src={card.image} alt=""/>
 							</MDBCol>
 							<MDBCol>
 								<MDBRow className="pb-3">
