@@ -26,7 +26,7 @@ class CalendarPage extends Component {
         api.get(
             (response) => {
                 this.setState({
-                    events:response,
+                    events: response,
                     allEvents: response
                 }, () => {
                     console.log(this.state.events)
@@ -41,15 +41,15 @@ class CalendarPage extends Component {
 
     handleEventSelect = event => {
         const currentEvents = [];
-        if(event.target.value === "Show All"){
+        if (event.target.value === "Show All") {
             this.setState({
                 events: this.state.allEvents,
                 eventType: event.target.value
             })
-        }else{
-            for(let i=0; i < this.state.events.length; i++){
-                if(this.state.events[i].eventType === event.target.value){
-                    currentEvents.push(this.state.events[i])
+        } else {
+            for (let i = 0; i < this.state.allEvents.length; i++) {
+                if (this.state.state.allEvents[i].eventType === event.target.value) {
+                    currentEvents.push(this.state.state.allEvents[i])
                 }
             }
             this.setState({
@@ -57,40 +57,40 @@ class CalendarPage extends Component {
                 eventType: event.target.value
             });
         }
-        
+
     }
 
     render() {
         return (
             <div>
                 <FormControl>
-                <InputLabel shrink htmlFor="select-multiple-native">
-                    Event Type
+                    <InputLabel shrink htmlFor="select-multiple-native">
+                        Event Type
                 </InputLabel>
-                <Select
-                    native
-                    value={this.state.eventType}
-                    onChange={this.handleEventSelect}
-                >
-                    {this.state.catagories.map(name => {
-                        return (
-                            <option key={name} value={name}>
-                                {name}
-                            </option>
-                        )
-                    })}
-                </Select>
+                    <Select
+                        native
+                        value={this.state.eventType}
+                        onChange={this.handleEventSelect}
+                    >
+                        {this.state.catagories.map(name => {
+                            return (
+                                <option key={name} value={name}>
+                                    {name}
+                                </option>
+                            )
+                        })}
+                    </Select>
                 </FormControl>
-                <div id= "calendar">
-                        <Calendar
-                            localizer={localizer}
-                            defaultDate={new Date()}
-                            defaultView={"month"}
-                            views={['month']}
-                            events={this.state.events}
-                            style={{ height: "85vh" }}
-                            onSelectEvent={this.handleEventClick}
-                        />
+                <div id="calendar">
+                    <Calendar
+                        localizer={localizer}
+                        defaultDate={new Date()}
+                        defaultView={"month"}
+                        views={['month']}
+                        events={this.state.events}
+                        style={{ height: "85vh" }}
+                        onSelectEvent={this.handleEventClick}
+                    />
                 </div>
             </div>
         );
