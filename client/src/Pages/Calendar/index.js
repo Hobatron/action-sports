@@ -63,23 +63,27 @@ class CalendarPage extends Component {
     render() {
         return (
             <div>
-                <FormControl>
-                <InputLabel shrink htmlFor="select-multiple-native">
-                    Event Type
-                </InputLabel>
-                <Select
-                    native
-                    value={this.state.eventType}
-                    onChange={this.handleEventSelect}
-                >
-                    {this.state.catagories.map(name => {
-                        return (
-                            <option key={name} value={name}>
-                                {name}
-                            </option>
-                        )
-                    })}
-                </Select>
+                <FormControl id="eventSelect">
+                    <div id="selection">
+                        <InputLabel shrink htmlFor="select-multiple-native" id="inputLabel">
+                        </InputLabel>
+                    <div id="select-div">
+                        Event Type<br /><br />
+                        <Select
+                            native
+                            value={this.state.eventType}
+                            onChange={this.handleEventSelect}
+                            >
+                            {this.state.catagories.map(name => {
+                                return (
+                                    <option key={name} value={name}>
+                                        {name}
+                                    </option>
+                                )
+                            })}
+                        </Select>
+                        </div>
+                    </div>
                 </FormControl>
                 <div id= "calendar">
                         <Calendar
