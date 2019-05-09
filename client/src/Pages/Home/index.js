@@ -8,7 +8,6 @@ import EventsWidget from '../../components/EventsWidget';
 import './Home.css';
 
 
-
 const Home = () => {
       return (
             <div className="container">

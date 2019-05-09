@@ -9,13 +9,39 @@
     font-weight: bold;
     box-shadow: 2px 2px;
 }
-.rbc-event-content{
-    /* background-color: blue */
-}
-.rbc-event-allday{
-    /* visibility: hidden; */
-}
+/* .rbc-event-content{
+    background-color: blue
+} */
+/* .rbc-event-allday{
+    visibility: hidden;
+} */
 .rbc-day-bg.rbc-today {
     background-color: rgb(212, 220, 255);
     opacity: .5;
+}
+
+#eventSelect{
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#select-div{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    border-radius: 5px solid black;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+#inputLabel{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    margin-top: -20px;
+    font-family: "Lucida Console", Monaco, monospace;
+    width: 100%;
 }

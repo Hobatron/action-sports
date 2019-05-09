@@ -53,3 +53,7 @@ body {
   background-size: cover;
   position: relative;
 }
+
+.as-container {
+	display: block;
+}

@@ -9,6 +9,7 @@ import Home from './Pages/Home/index.js';
 import Admin from './Pages/Admin';
 import Calendar from './Pages/Calendar';
 import Buylist from "./Pages/Buylist";
+import Footer from './components/Footer';
 
 
 function onAuthRequired({history}){
@@ -40,6 +41,7 @@ class App extends Component {
               </div>
             </Security>
           </Router>
+          <Footer />
       </div>
     );
   }
