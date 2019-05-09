@@ -21,7 +21,7 @@ class Buylist extends Component {
                     <div className="row">
                         <div className="col-12">
                             <div id="buylist-title">
-                                <h2>BUY LIST</h2></div>
+                                <h2>Buy List</h2></div>
                             <br />
                             <div id="Searchbar">
                                 Search Buylist:<br />
