@@ -1,42 +1,50 @@
 import React, { Component } from 'react';
 import './CalendarWidget.css';
 import IndividualEvent from '../IndividualEvent';
+import api from './api';
 
 class CalendarWidget extends Component {
     state={
-        events: [
-            {
-                title: "event-one",
-                time: "4:30",
-                date: "05/01/2019",
-                description: "Yu-Gi-Oh Tournament",
-                cost: "$10"
-            },
-            {
-                title: "event-two",
-                time: "4:30",
-                date: "05/02/2019",
-                description: "Magic the Gathering",
-                cost: "$50"
-            }
-        ]
+        events: []
+    }
+
+    componentDidMount() {
+        api.get((res) => {
+            this.setState({
+                events: res.data
+            }, () => {
+                console.log(this.state)
+            })
+        })
     }
 
     render() {
+    function time (time) {
+        const hrs = time.split(":")
+        if (hrs[0] > 12) {
+            return `${hrs[0] - 12}:${hrs[1]} PM`
+        } else {
+            return `${time} AM`
+        }
+    }
     return (
     <div id="calendar-widget">
         <div id="calendar">
         <div id="weekly-events">
-            Weekly Events
+            Upcoming events:
         </div>
-            {this.state.events.map(event => (
-                <IndividualEvent 
-                name={event.title}
-                time={event.time}
-                date={event.date}
-                description={event.description}
-                cost={event.cost}
-                />
+            {this.state.events.map(day => (
+                day.map(event => {
+                    return (
+                    <IndividualEvent 
+                        name={event.title}
+                        time={time(event.startTime)}
+                        date={event.start}
+                        description={event.description}
+                        cost={event.cost || "Free"}
+                    />
+                    )
+                })
             ))}
             
         </div>
