@@ -27,7 +27,7 @@ class CalendarWidget extends Component {
     <div id="calendar-widget">
         <div id="calendar">
         <div id="weekly-events">
-            Weekly Events
+            Upcoming Events
         </div>
             {this.state.events.map(event => (
                 <IndividualEvent 

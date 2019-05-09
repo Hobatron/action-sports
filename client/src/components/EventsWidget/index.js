@@ -4,9 +4,9 @@ import './EventsWidget.css';
 const EventsWidget = () => {
     return (
     <div id="events-widget">
-        RSVP FOR<br />
-        UPCOMING<br />
-        EVENTS NOW!
+        RSVP For<br />
+        Upcoming<br />
+        Events Now!
         <br />
         <a href="mailto:none@none.com"><button>RSVP</button></a>
     </div>
