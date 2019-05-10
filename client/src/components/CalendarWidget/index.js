@@ -12,8 +12,6 @@ class CalendarWidget extends Component {
         api.get((res) => {
             this.setState({
                 events: res.data
-            }, () => {
-                console.log(this.state)
             })
         })
     }

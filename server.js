@@ -1,9 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose")
-const db = require("./model");
 const apiRoutes = require("./routes/apiRoutes");
-const moment = require("moment");
 
 
 const PORT = process.env.PORT || 3001;
@@ -19,10 +17,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-mongoose.connect("mongodb://localhost/action-sports-db", {
+//mongodb:localhost/action-sports-db
+mongoose.connect("mongodb://asw:aswebdev1@ds137206.mlab.com:37206/heroku_2ztlncnk", {
   useNewUrlParser: true
 });
-
 
 // Define API routes here
 
