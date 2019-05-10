@@ -25,6 +25,13 @@ class CalendarWidget extends Component {
             return `${time} AM`
         }
     }
+    function convertCost(cost) {
+        if (cost === 0) {
+            return "Free"
+        } else {
+            return `$${cost.toFixed(2)}`
+        }
+    }
     return (
     <div id="calendar-widget">
         <div id="calendar">
@@ -34,12 +41,13 @@ class CalendarWidget extends Component {
             {this.state.events.map(day => (
                 day.map(event => {
                     return (
-                    <IndividualEvent 
+                    <IndividualEvent
+                        key={event._id}
                         name={event.title}
                         time={time(event.startTime)}
                         date={event.start}
                         description={event.description}
-                        cost={event.cost || "Free"}
+                        cost={convertCost(event.cost)}
                     />
                     )
                 })

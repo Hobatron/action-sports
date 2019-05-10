@@ -17,8 +17,6 @@ class Buylist extends Component {
 			this.setState({
 				buylist: res,
 				currentView: res,
-			},() => {
-				console.log(this.state)
 			})
 		})
 	}
@@ -26,7 +24,7 @@ class Buylist extends Component {
 	getCardName = card => {
 		const searchResults = this.state.buylist.filter(onListCards => onListCards.name === card.name);
 		this.setState({
-			currentView: searchResults
+			currentView: searchResults,
 		})
 	}
 

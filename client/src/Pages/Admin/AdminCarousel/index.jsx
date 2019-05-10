@@ -52,6 +52,14 @@ class AdminCarousel extends React.Component {
         );
     };
 
+    removeCarousel = event => {
+        const id = event.target.getAttribute('data-id');
+        api.delete(`/api/carousel/${id}`);
+        this.setState({
+            carouselItems: this.state.carouselItems.filter(item => item._id !== id)
+        });
+    };
+
     handleChange = event => {
         let stateTarget = event.target.getAttribute("data-target");
         this.setState({ [stateTarget]: event.target.value });
@@ -125,7 +133,7 @@ class AdminCarousel extends React.Component {
                                     <div className="remCar" key={item._id}>
                                         {item.image.slice(0, 45) + "..."}
                                         <button>copy</button>
-                                        <span onClick="" data-id={item._id}>x</span>
+                                        <span onClick={this.removeCarousel} data-id={item._id}>x</span>
                                     </div>
                                 )
                             })}

@@ -12,7 +12,7 @@ class CalendarPage extends Component {
     state = {
         events: [],
         catagories: [
-            "Show All", "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "BoardGames", "Starwars",
+            "Show All", "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
             "KeyForge", "Transformers"
         ],
         eventType: "",
@@ -35,8 +35,6 @@ class CalendarPage extends Component {
                 this.setState({
                     events: response,
                     allEvents: response
-                }, () => {
-                    console.log(this.state.events)
                 })
             }
         )
@@ -53,8 +51,8 @@ class CalendarPage extends Component {
             })
         } else {
             for (let i = 0; i < this.state.allEvents.length; i++) {
-                if (this.state.state.allEvents[i].eventType === event.target.value) {
-                    currentEvents.push(this.state.state.allEvents[i])
+                if (this.state.allEvents[i].eventType === event.target.value) {
+                    currentEvents.push(this.state.allEvents[i])
                 }
             }
             this.setState({
@@ -65,7 +63,6 @@ class CalendarPage extends Component {
 
     }
     eventStyleGetter = (event, start, end, isSelected) => {
-        console.log(event.eventType);
         const color = this.state.eventColors[event.eventType]
         var style = {
             backgroundColor: color,
@@ -113,7 +110,6 @@ class CalendarPage extends Component {
                             style={{ height: "85vh" }}
                             onSelectEvent={this.handleEventClick}
                             onSelectSlot={(this.slotSelected)}
-                            onSelectEvent={(this.eventSelected)}
                             eventPropGetter={(this.eventStyleGetter)}
                             />
                 </div>

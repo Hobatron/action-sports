@@ -14,7 +14,6 @@ class CarouselWidget extends Component {
 
   componentDidMount() {
     api.getCarousel().then(results => {
-      console.log(results);
       this.setState({
         items: results
       });
@@ -34,49 +33,46 @@ class CarouselWidget extends Component {
       direction
     } = this.state;
 
-    return ( <
-      div className = "front-page-carousel" >
-      <
-      Carousel activeIndex = {
-        index
-      }
-      direction = {
-        direction
-      }
-      onSelect = {
-        this.handleSelect
-      } >
-      {
-        this.state.items.map(item => {
-          return ( <
-            Carousel.Item key = {
-              item.name
-            }
-            className = "carousel" >
-            <
-            img className = "d-block w-100"
-            src = {
-              item.image
-            }
-            alt = "" / >
-            <
-            Carousel.Caption >
-            <
-            h1 style = {
-              {
-                fontSize: 50,
-                color: item.color
-              }
-            } > {
-              item.description
-            } < /h1> <
-            /Carousel.Caption> <
-            /Carousel.Item>
-          );
-        })
-      } <
-      /Carousel> <
-      /div>
+    return (
+      <div className="front-page-carousel" >
+        <Carousel activeIndex={
+          index
+        }
+          direction={
+            direction
+          }
+          onSelect={
+            this.handleSelect
+          } >
+          {
+            this.state.items.map(item => {
+              return (
+                <Carousel.Item key={
+                  item._id
+                }
+                  className="carousel" >
+                  <
+                    img className="d-block w-100"
+                    src={
+                      item.image
+                    }
+                    alt="" />
+                  <Carousel.Caption >
+                    <h1 style={
+                      {
+                        fontSize: 50,
+                        color: item.color
+                      }
+                    } > {
+                        item.description
+                      } </h1>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              );
+            })
+          }
+        </Carousel>
+      </div>
     );
   }
 }

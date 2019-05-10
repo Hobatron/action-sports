@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import './Navbar.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export class Navbar extends Component {
@@ -19,8 +19,8 @@ export class Navbar extends Component {
     return (
       <div id="as-nav-bar">
         <div className="container">
-            <div id="title"><Link class="link" to="/">ACTION SPORTS AND GAMING</Link></div>
-            <div id="menu"><Link class="link" to="/calendar">EVENTS</Link> | <Link class="link" to="/buylist">BUY LIST</Link></div>
+            <div id="title"><Link className="link" to="/">ACTION SPORTS AND GAMING</Link></div>
+            <div id="menu"><Link className="link" to="/calendar">EVENTS</Link> | <Link className="link" to="/buylist">BUY LIST</Link></div>
         </div>
         <div id="address"></div>
 
