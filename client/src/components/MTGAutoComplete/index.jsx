@@ -7,6 +7,8 @@ export class MTGAutoComplete extends Component {
 	state = {
 		cardQ: '',
 		searchResults: [],
+		hiddenResults: [],
+		canHide: true,
 	}
 
 	handleChange = event => {
@@ -20,6 +22,34 @@ export class MTGAutoComplete extends Component {
 			})
 		});
 	};
+
+	handleMouseEnter = (event) => {
+		this.setState({
+			canHide: false
+		})
+	}
+
+	handleMouseLeave = (event) => {
+		this.setState({
+			canHide: true
+		})
+	}
+
+	handleBlur = () => {
+		if (this.state.canHide) {
+			this.setState({
+				searchResults: [],
+				hiddenResults: this.state.searchResults,
+			})
+		}
+	}
+
+	handleFocus = () => {
+		this.setState({
+			searchResults: this.state.hiddenResults,
+			hiddenResults: [],
+		})
+	}
 
 	handleCardClick = event => {
 		let chosenCard = event.target.textContent;
@@ -44,6 +74,8 @@ export class MTGAutoComplete extends Component {
 					label="Card Name"
 					value={this.state.cardQ}
 					onChange={this.handleChange}
+					onBlur={this.handleBlur}
+					onFocus={this.handleFocus}
 					outline
 				/>
 				{this.state.searchResults.length > 0 &&
@@ -54,6 +86,8 @@ export class MTGAutoComplete extends Component {
 									<li
 										onClick={this.handleCardClick}
 										key={name}
+										onMouseEnter={this.handleMouseEnter}
+										onMouseLeave={this.handleMouseLeave}
 									>{name}
 									</li>
 								);

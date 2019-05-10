@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import { MDBInput, MDBCol, MDBRow, MDBBtn } from 'mdbreact';
-import axios from '../api';
+import api from '../api';
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -39,6 +39,25 @@ class AdminCarousel extends React.Component {
         description: '',
         image: '',
         color: '',
+        carouselItems: [],
+    };
+
+    componentDidMount() {
+        api.get('/api/carousel',
+            (res) => {
+                this.setState({
+                    carouselItems: res,
+                });
+            }
+        );
+    };
+
+    removeCarousel = event => {
+        const id = event.target.getAttribute('data-id');
+        api.delete(`/api/carousel/${id}`);
+        this.setState({
+            carouselItems: this.state.carouselItems.filter(item => item._id !== id)
+        });
     };
 
     handleChange = event => {
@@ -56,7 +75,7 @@ class AdminCarousel extends React.Component {
 
     handleSubmit = () => {
         //NEED TO ADD VALIDATION
-        axios.post('/api/carousel', this.state)
+        api.post('/api/carousel', this.state)
         this.setState({
             description: '',
             image: '',
@@ -107,7 +126,19 @@ class AdminCarousel extends React.Component {
                         <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
 
                     </TabContainer>
-                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                    <TabContainer dir={theme.direction}>
+                        <div>
+                            {this.state.carouselItems.map(item => {
+                                return (
+                                    <div className="remCar" key={item._id}>
+                                        {item.image.slice(0, 45) + "..."}
+                                        <button>copy</button>
+                                        <span onClick={this.removeCarousel} data-id={item._id}>x</span>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </TabContainer>
                 </SwipeableViews>
             </div>
         );

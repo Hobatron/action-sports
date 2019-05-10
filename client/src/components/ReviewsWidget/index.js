@@ -22,7 +22,7 @@ class ReviewsWidget extends Component {
        </div>
        <div id="authorsRating">
          {this.state.results.map(result => (
-           <div>
+           <div key={result.author_name}>
              <p
                id="authorsName"
                key={`${result.author_name}_${result.author_name}`}

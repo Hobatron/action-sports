@@ -12,7 +12,7 @@ class CalendarPage extends Component {
     state = {
         events: [],
         catagories: [
-            "Show All", "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "BoardGames", "Starwars",
+            "Show All", "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
             "KeyForge", "Transformers"
         ],
         eventType: "",
@@ -33,10 +33,8 @@ class CalendarPage extends Component {
         api.get(
             (response) => {
                 this.setState({
-                    events:response,
+                    events: response,
                     allEvents: response
-                }, () => {
-                    console.log(this.state.events)
                 })
             }
         )
@@ -46,15 +44,15 @@ class CalendarPage extends Component {
     }
     handleEventSelect = event => {
         const currentEvents = [];
-        if(event.target.value === "Show All"){
+        if (event.target.value === "Show All") {
             this.setState({
                 events: this.state.allEvents,
                 eventType: event.target.value
             })
-        }else{
-            for(let i=0; i < this.state.events.length; i++){
-                if(this.state.events[i].eventType === event.target.value){
-                    currentEvents.push(this.state.events[i])
+        } else {
+            for (let i = 0; i < this.state.allEvents.length; i++) {
+                if (this.state.allEvents[i].eventType === event.target.value) {
+                    currentEvents.push(this.state.allEvents[i])
                 }
             }
             this.setState({
@@ -62,10 +60,9 @@ class CalendarPage extends Component {
                 eventType: event.target.value
             });
         }
-        
+
     }
     eventStyleGetter = (event, start, end, isSelected) => {
-        console.log(event.eventType);
         const color = this.state.eventColors[event.eventType]
         var style = {
             backgroundColor: color,
@@ -113,7 +110,6 @@ class CalendarPage extends Component {
                             style={{ height: "85vh" }}
                             onSelectEvent={this.handleEventClick}
                             onSelectSlot={(this.slotSelected)}
-                            onSelectEvent={(this.eventSelected)}
                             eventPropGetter={(this.eventStyleGetter)}
                             />
                 </div>

@@ -53,7 +53,6 @@ export class AdminBuylist extends Component {
     };
 
     handleSubmit = () => {
-        console.log(this.state)
         api.post("/api/buylist", this.state)
     }
 

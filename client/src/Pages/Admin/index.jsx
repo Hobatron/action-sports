@@ -13,7 +13,7 @@ import AdminBuylist from './AdminBuylist';
 
 
 export default withAuth(class Admin extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             catagories: [
@@ -27,9 +27,9 @@ export default withAuth(class Admin extends Component {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
     }
-    
 
-    checkAuthentication = async() => {
+
+    checkAuthentication = async () => {
         const authenticated = await this.props.auth.isAuthenticated();
         if (authenticated !== this.state.authenticated) {
             this.setState({ authenticated });
@@ -39,25 +39,23 @@ export default withAuth(class Admin extends Component {
     componentDidMount() {
         this.checkAuthentication();
     }
-      
+
     componentDidUpdate() {
         this.checkAuthentication();
     }
-      
+
     login() {
         this.props.auth.login('/');
     }
-      
+
     logout() {
         this.props.auth.logout('/');
     }
 
     getPickerValue = (value) => {
-        console.log(value);
     };
 
     handleRadioChange = event => {
-        console.log(this.state.selectedValue)
         this.setState({ selectedValue: event.target.value });
     };
 
@@ -65,10 +63,10 @@ export default withAuth(class Admin extends Component {
 
     render() {
         if (this.state.authenticated === null) return null;
-            
+
         const button = this.state.authenticated ?
-        <button onClick={this.logout}>Logout</button> :
-        <button onClick={this.login}>Login</button>;
+            <button onClick={this.logout}>Logout</button> :
+            <button onClick={this.login}>Login</button>;
 
         return (
             <MDBContainer className="mt-5">
