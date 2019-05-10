@@ -51,7 +51,6 @@ class Buylist extends Component {
 								   <div id="card-display">
 									   <Card buylist={this.state.currentView}/>
 								   </div>
-
 							</div>
 						</div>
 					</div>

@@ -79,7 +79,9 @@ export class AdminCalender extends Component {
 
     deleteEvent = () => {
         api.delete(`api/calendar/${this.state.clickedEvent._id}`);
-
+        this.setState({
+            modal:false,
+        })
         // Live calendar update: derenders?
         // for (let i = 0; i < this.state.events.length; i++) {
         //     if (this.state.clickedEvent._id === this.state.events[i]._id) {

@@ -21,6 +21,8 @@ class CalendarWidget extends Component {
         const hrs = time.split(":")
         if (hrs[0] > 12) {
             return `${hrs[0] - 12}:${hrs[1]} PM`
+        } else if (hrs[0] === "12") {
+            return `${time} PM`
         } else {
             return `${time} AM`
         }
