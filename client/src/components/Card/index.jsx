@@ -19,7 +19,7 @@ export class Cards extends Component {
 										{card.name}
 									</MDBRow>
 									<MDBRow className="pb-3">
-										Paying: {card.price}
+										Paying: {`$${card.price.toFixed(2)}`}
 									</MDBRow>
 									<MDBRow className="pb-3">
 										Needing: {card.quantity}
