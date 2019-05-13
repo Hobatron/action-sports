@@ -1,6 +1,6 @@
 .wrapper {
     width: 400px;
-    height: 400px;
+    height: 520px;
     background-color: rgba(207, 207, 207, 0.801);
     padding: 0px;
     margin-top: 25px;
@@ -9,19 +9,34 @@
 
 }
 
-.wrapper div {
-    margin: 0px;
-    padding: 0px;
-}
-
-.header {
+.top {
+    padding: 7px 5px;
     height: 75px;
     border-radius: 7px 7px 0 0;
     width: 100%;
     background-color: white;
 }
 
-.footer {
+.top img {
+    width: 75%;
+}
+
+.middle {
+    margin-top: 15px !important;
+    user-select: none;
+    font-size: 65px;
+    font-weight: bolder;
+    text-shadow: 0 0 1em rgb(54, 54, 54), 0 0 0.2em rgb(126, 126, 126);
+    color: rgb(235, 235, 235);
+}
+
+.middle img {
+    width: 300px;
+    border-radius: 20px
+}
+
+.bottom {
+    color: black;
     height: 45px;
     border-radius: 0px 0px 7px 7px;
     width: 100%;
@@ -29,4 +44,15 @@
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+.bottom div {
+    margin: 11px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.bottom:hover {
+    background-color: rgb(138, 138, 138);
 }
