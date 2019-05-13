@@ -6,8 +6,8 @@ export default {
         method: 'get',
         url: '/api/weeklyCal'
       })
-        .then(function(response) {
-            func(response);
-        })
-    }
+      .then(function (response) {
+        func(response);
+      })
+  }
 }
