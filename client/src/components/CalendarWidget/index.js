@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CalendarWidget.css';
 import IndividualEvent from '../IndividualEvent';
+import { Link } from 'react-router-dom';
 import api from './api';
 
 class CalendarWidget extends Component {
@@ -38,7 +39,9 @@ class CalendarWidget extends Component {
     <div id="calendar-widget">
         <div id="calendar">
         <div id="weekly-events">
-            Upcoming Events
+            <Link className="link" to="/calendar">
+                Upcoming events
+            </Link>
         </div>
             {this.state.events.map(day => (
                 day.map(event => {
