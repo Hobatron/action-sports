@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose")
 const apiRoutes = require("./routes/apiRoutes");
+require("dotenv").config();
 
 
 const PORT = process.env.PORT || 3001;
@@ -25,8 +26,10 @@ app.use(function(req, res, next) {
 });
 
 //mongodb:localhost/action-sports-db
-mongoose.connect("mongodb://asw:aswebdev1@ds137206.mlab.com:37206/heroku_2ztlncnk", {
+mongoose.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true
+}, () => {
+  console.log("Connected");
 });
 
 // Define API routes here
