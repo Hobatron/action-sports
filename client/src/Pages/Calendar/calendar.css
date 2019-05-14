@@ -5,28 +5,46 @@
     margin-right: 5%;
     margin-left: 5%;
     opacity: .9;
-    box-shadow: 0px 5px 20px 20px black;    
+    box-shadow: 0px 5px 20px 20px black;
     font-weight: bold;
     box-shadow: 2px 2px;
 }
-/* .rbc-event-content{
-    background-color: blue
-} */
-/* .rbc-event-allday{
-    visibility: hidden;
-} */
+
+.rbc-month-row {
+    overflow: visible !important;
+}
+
+.z1 {
+    z-index: -1;
+}
+
+.popover {
+    color: black;
+    position: absolute;
+    isolation: isolate;
+    z-index: 2;
+}
+
+.rbc-event {
+    height: 20px;
+}
+
+.eventRSVP {
+    padding: 5px !important;
+}
+
 .rbc-day-bg.rbc-today {
     background-color: rgb(212, 220, 255);
     opacity: .5;
 }
 
-#eventSelect{
+#eventSelect {
     text-align: center;
     width: 100%;
     margin-top: 30px;
 }
 
-#select-div{
+#select-div {
     width: 50%;
     margin: 0 auto;
     text-align: center;
@@ -37,11 +55,15 @@
     font-family: "Lucida Console", Monaco, monospace;
 }
 
-#inputLabel{
+#inputLabel {
     font-size: 1.5em;
     font-weight: bold;
     color: white;
     margin-top: -20px;
     font-family: "Lucida Console", Monaco, monospace;
     width: 100%;
+}
+
+.calendarEvent {
+    height: 15px;
 }
