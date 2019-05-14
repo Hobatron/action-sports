@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
+import { MDBPopover, MDBPopoverBody, MDBPopoverHeader } from 'mdbreact';
 import './calendar.css';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
@@ -7,7 +8,9 @@ import api from "./api"
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+
 const localizer = Calendar.momentLocalizer(moment);
+
 class CalendarPage extends Component {
     state = {
         events: [],
@@ -39,9 +42,10 @@ class CalendarPage extends Component {
             }
         )
     }
-    handleEventClick = event => {
-        console.log(event)
+    handleEventClick = (event, e) => {
+        console.log(event, e.target)
     }
+
     handleEventSelect = event => {
         const currentEvents = [];
         if (event.target.value === "Show All") {
@@ -62,7 +66,7 @@ class CalendarPage extends Component {
         }
 
     }
-    eventStyleGetter = (event, start, end, isSelected) => {
+    eventStyleGetter = (event) => {
         const color = this.state.eventColors[event.eventType]
         var style = {
             backgroundColor: color,
@@ -75,6 +79,48 @@ class CalendarPage extends Component {
             style: style
         };
     }
+    time = (time) => {
+        const hrs = time.split(":")
+        if (hrs[0] > 12) {
+            return `${hrs[0] - 12}:${hrs[1]} PM`
+        } else if (hrs[0] === "12") {
+            return `${time} PM`
+        } else {
+            return `${time} AM`
+        }
+    }
+    convertCost = (cost) => {
+        if (cost === 0) {
+            return "Free"
+        } else {
+            return `$${cost.toFixed(2)}`
+        }
+    }
+    eventElement = ({ event }) => {
+        return (
+            <MDBPopover
+                className="z1"
+                placement="top"
+                popover
+                clickable
+                domElement
+                isVisible={this.state.popoverVisible}
+                id={event._id}
+            >
+                <div>
+                    {event.title}
+                </div>
+                <div>
+                    <MDBPopoverHeader><span>{event.title}</span><span className="float-right">{this.convertCost(event.cost)}</span></MDBPopoverHeader>
+                    <MDBPopoverBody>
+                        {this.time(event.startTime)}: {event.description}
+                        <br />
+                        <button className="eventRSVP btn ripple waves-effect">RSVP</button>
+                    </MDBPopoverBody>
+                </div>
+            </MDBPopover>
+        )
+    }
     render() {
         return (
             <div>
@@ -82,37 +128,41 @@ class CalendarPage extends Component {
                     <div id="selection">
                         <InputLabel shrink htmlFor="select-multiple-native" id="inputLabel">
                         </InputLabel>
-                    <div id="select-div">
-                        Event Type<br /><br />
-                        <Select
-                            native
-                            value={this.state.eventType}
-                            onChange={this.handleEventSelect}
+                        <div id="select-div">
+                            Event Type<br /><br />
+                            <Select
+                                native
+                                value={this.state.eventType}
+                                onChange={this.handleEventSelect}
                             >
-                            {this.state.catagories.map(name => {
-                                return (
-                                    <option key={name} value={name}>
-                                        {name}
-                                    </option>
-                                )
-                            })}
-                        </Select>
+                                {this.state.catagories.map(name => {
+                                    return (
+                                        <option key={name} value={name}>
+                                            {name}
+                                        </option>
+                                    )
+                                })}
+                            </Select>
                         </div>
                     </div>
                 </FormControl>
-                <div id= "calendar">
-                         <Calendar
-                            localizer={localizer}
-                            defaultDate={new Date()}
-                            defaultView={"month"}
-                            views={['month']}
-                            events={this.state.events}
-                            style={{ height: "85vh" }}
-                            onSelectEvent={this.handleEventClick}
-                            onSelectSlot={(this.slotSelected)}
-                            eventPropGetter={(this.eventStyleGetter)}
-                            />
+                <div id="calendar">
+                    <Calendar
+                        localizer={localizer}
+                        defaultDate={new Date()}
+                        defaultView={"month"}
+                        views={['month']}
+                        components={{
+                            event: this.eventElement
+                        }}
+                        events={this.state.events}
+                        style={{ height: "85vh" }}
+                        onSelectEvent={this.handleEventClick}
+                        onSelectSlot={(this.slotSelected)}
+                        eventPropGetter={(this.eventStyleGetter)}
+                    />
                 </div>
+
             </div>
         );
     }
