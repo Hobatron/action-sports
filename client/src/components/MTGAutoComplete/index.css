@@ -12,4 +12,22 @@
 
 .autocomplete li:hover {
     background-color: rgba(168, 168, 168, 0.904);
+    cursor: pointer;
+}
+
+.blAutoComplete {
+    padding-top: 10px;
+    width: 41%;
+    background-color: rgba(51, 51, 51, 0.699);
+    z-index: 2;
+    position: fixed;
+    top: 232px;
+    list-style-type: none;
+    max-height: 200px;
+    overflow: scroll;
+}
+
+.blAutoComplete li:hover {
+    background-color: rgba(168, 168, 168, 0.904);
+    cursor: pointer;
 }

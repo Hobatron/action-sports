@@ -7,7 +7,6 @@ import MTGAutoComplete from '../../components/MTGAutoComplete';
 class Buylist extends Component {
     state = {
         cardName: "",
-        cards: [],
         buylist: [],
         currentView: [],
     }
@@ -22,7 +21,11 @@ class Buylist extends Component {
     }
 
     getCardName = card => {
-        const searchResults = this.state.buylist.filter(onListCards => onListCards.name === card.name);
+        let searchResults = this.state.buylist.filter(onListCards => onListCards.name === card.name);
+        if (card === "") {
+            searchResults = this.state.buylist;
+        }
+
         this.setState({
             currentView: searchResults,
         })
@@ -36,13 +39,14 @@ class Buylist extends Component {
                     <div id="buylist-title">
                         <h2>Buy List</h2>
                     </div>
+
                     <div id="Searchbar">
-                        Search Buylist:<br />
-                        <form>
-                            <MTGAutoComplete
-                                return={this.getCardName}
-                            /><br />
-                        </form>
+                        <span className="text-dark">Search Buylist:</span><br />
+
+                        <MTGAutoComplete
+                            className="blAutoComplete"
+                            return={this.getCardName}
+                        /><br />
                     </div>
                     <div className="row">
                         <div className="col-12">
