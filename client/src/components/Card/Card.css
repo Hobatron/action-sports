@@ -9,11 +9,6 @@
     word-wrap: break-word;
 }
 
-.pb-3 {
-    padding-left: 5px;
-}
-
-
 .cardIMG:hover {
     transform: scale(1.10, 1.10);
     z-index: 1;

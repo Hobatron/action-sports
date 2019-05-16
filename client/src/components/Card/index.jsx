@@ -15,7 +15,7 @@ export class Cards extends Component {
 									<img className="cardIMG" alt={card.name} src={card.image} />
 								</MDBCol>
 								<MDBCol>
-									<MDBRow className="pb-3">
+									<MDBRow className="pb-3 w-100">
 										{card.name}
 									</MDBRow>
 									<MDBRow className="pb-3">
