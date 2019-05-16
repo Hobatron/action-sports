@@ -12,6 +12,9 @@ export class MTGAutoComplete extends Component {
 	}
 
 	handleChange = event => {
+		if (!event.target.value) {
+			this.props.return("")
+		}
 		this.setState({
 			cardQ: event.target.value
 		}, () => {
@@ -79,7 +82,7 @@ export class MTGAutoComplete extends Component {
 					outline
 				/>
 				{this.state.searchResults.length > 0 &&
-					<div className="autocomplete">
+					<div className={this.props.className || "autocomplete"}>
 						<ul>
 							{this.state.searchResults.map(name => {
 								return (
