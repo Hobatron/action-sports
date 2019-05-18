@@ -25,7 +25,6 @@ export class Navbar extends Component {
     if (this.state.interests.length > 0) {
       api.post("/api/user", this.state, (res) => {
         if (res) {
-          console.log(res)
           this.setState({
             modal: !this.state.modal,
             signedUp: true
