@@ -62,9 +62,22 @@ class AdminCarousel extends React.Component {
     };
 
     handleChange = event => {
-        console.log(event.target.value);
         let stateTarget = event.target.getAttribute("data-target");
         this.setState({ [stateTarget]: event.target.value });
+    };
+
+    handleLocalImage = event => {
+        let files = event.target.files;
+        let reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        let fileName = event.target.value;
+
+        reader.onload = (e) => {
+            this.setState({
+                localImage: e.target.result,
+                fileName: fileName,
+            })
+        }
     }
 
     handleTabChange = (event, value) => {
@@ -80,7 +93,8 @@ class AdminCarousel extends React.Component {
         api.post('/api/carousel', this.state)
         this.setState({
             description: '',
-            image: '',
+            urlImage: '',
+            localImage: '',
             color: '',
         })
     };
@@ -114,26 +128,34 @@ class AdminCarousel extends React.Component {
                                 <input
                                     accept="image/*"
                                     className={classes.input}
-                                    data-target={'localImage'}
+                                    data-target={'image'}
                                     id="contained-button-file"
                                     type="file"
-                                    onChange={this.handleChange}
+                                    onChange={this.handleLocalImage}
                                 />
                             </MDBCol>
                             <MDBCol>
                                 <MDBInput label="#Color" value={this.state.color} data-target={'color'} onChange={this.handleChange} className="d-inline-block" outline />
                             </MDBCol>
                         </MDBRow>
-                        <MDBInput label="Image URL:" value={this.state.image} data-target={'urlImage'} onChange={this.handleChange} className="d-inline-block" outline />
+                        <MDBInput label="Image URL:" value={this.state.urlImage} data-target={'urlImage'} onChange={this.handleChange} className="d-inline-block" outline />
                         <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
 
                     </TabContainer>
                     <TabContainer dir={theme.direction}>
                         <div>
                             {this.state.carouselItems.map(item => {
+                                // console.log(item)
+                                function imageName () {
+                                    if (item.fileName) {
+                                        return item.fileName.slice(0, 45) + "...";
+                                    } else {
+                                       return item.image.slice(0, 45) + "...";
+                                    }
+                                }
                                 return (
                                     <div className="remCar" key={item._id}>
-                                        {item.image.slice(0, 45) + "..."}
+                                        {imageName()}
                                         <button>copy</button>
                                         <span onClick={this.removeCarousel} data-id={item._id}>x</span>
                                     </div>

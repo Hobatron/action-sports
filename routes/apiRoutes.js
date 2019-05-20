@@ -301,10 +301,10 @@ module.exports = function (app) {
     // Post carousel pics
     app.post("/api/carousel", function (req, res) {
         db.Carousel.create({
-            urlImage: req.body.urlImage,
+            image: req.body.urlImage || req.body.localImage,
             description: req.body.description,
             color: req.body.color || "white",
-            localImage: req.body.localImage
+            fileName: req.body.fileName
         }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
