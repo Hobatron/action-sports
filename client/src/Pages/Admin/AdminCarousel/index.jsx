@@ -61,6 +61,7 @@ class AdminCarousel extends React.Component {
     };
 
     handleChange = event => {
+        console.log(event.target.value);
         let stateTarget = event.target.getAttribute("data-target");
         this.setState({ [stateTarget]: event.target.value });
     }
@@ -110,12 +111,11 @@ class AdminCarousel extends React.Component {
                             <MDBCol>
                                 <span className="muted">to be added</span>
                                 <input
-                                    disabled
                                     accept="image/*"
                                     className={classes.input}
                                     id="contained-button-file"
                                     type="file"
-                                // onChange={this.handleChange}
+                                    onChange={this.handleChange}
                                 />
                             </MDBCol>
                             <MDBCol>
