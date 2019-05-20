@@ -49,7 +49,7 @@ class Buylist extends Component {
                     <div className="row">
                         <div className="col-12">
                             <div id="card-display">
-                                <Card buylist={this.state.currentView} />
+                                <Card buylist={this.state.currentView} onChange={this.handleQntChange}/>
                             </div>
 
                         </div>
