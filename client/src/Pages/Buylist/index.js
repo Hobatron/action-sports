@@ -9,7 +9,7 @@ class Buylist extends Component {
         cardName: "",
         buylist: [],
         currentView: [],
-    }
+    };
 
     componentDidMount() {
         api.get((res) => {
@@ -17,19 +17,21 @@ class Buylist extends Component {
                 buylist: res,
                 currentView: res,
             })
-        })
-    }
+        });
+    };
+
+    
 
     getCardName = card => {
         let searchResults = this.state.buylist.filter(onListCards => onListCards.name === card.name);
         if (card === "") {
             searchResults = this.state.buylist;
-        }
+        };
 
         this.setState({
             currentView: searchResults,
-        })
-    }
+        });
+    };
 
     render() {
         return (

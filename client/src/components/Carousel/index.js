@@ -14,6 +14,7 @@ class CarouselWidget extends Component {
 
   componentDidMount() {
     api.getCarousel().then(results => {
+      console.log(results)
       this.setState({
         items: results
       });
@@ -51,10 +52,9 @@ class CarouselWidget extends Component {
                   item._id
                 }
                   className="carousel" >
-                  <
-                    img className="d-block w-100"
+                  <img className="d-block w-100"
                     src={
-                      item.image
+                      item.image || item.urlImage || item.localImage
                     }
                     alt="" />
                   <Carousel.Caption >

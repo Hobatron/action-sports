@@ -2,8 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CarouselSchema = new Schema({
-    urlImage: {
+    image: {
         type: String,
+    },
+    fileName: {
+        type: String
     },
     description: {
         type: String,
@@ -12,9 +15,6 @@ const CarouselSchema = new Schema({
     color: {
         type: String,
     },
-    localImage: {
-        type: Object
-    }
 });
 
 const Carousel = mongoose.model("Carousel", CarouselSchema);
