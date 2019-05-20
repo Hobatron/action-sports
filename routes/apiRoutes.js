@@ -330,4 +330,49 @@ module.exports = function (app) {
             console.log(err);
         });
     });
+
+    /*********Images API Routes***********/
+
+    // Post an image
+    app.post("/api/image", function(req, res) {
+        db.Image.create({
+            imageName: req.body.imageName,
+            imageUrl: req.body.imageUrl
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Get all images
+    app.get("/api/image", function(req, res) {
+        db.Image.find({}).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Get an image
+    app.get("/api/image/:id", function(req, res) {
+        db.Image.findOne({
+            _id: req.params.id
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    // Delete an image
+    app.delete("/api/image/:id", function(req, res) {
+        db.Image.deleteOne({
+            _id: req.params.id
+        }).then(function(response){
+            res.json(response);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
 }
