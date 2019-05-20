@@ -37,7 +37,8 @@ class AdminCarousel extends React.Component {
     state = {
         value: 0,
         description: '',
-        image: '',
+        urlImage: '',
+        localImage: '',
         color: '',
         carouselItems: [],
     };
@@ -110,19 +111,19 @@ class AdminCarousel extends React.Component {
                             <MDBCol>
                                 <span className="muted">to be added</span>
                                 <input
-                                    disabled
                                     accept="image/*"
                                     className={classes.input}
+                                    data-target={'localImage'}
                                     id="contained-button-file"
                                     type="file"
-                                // onChange={this.handleChange}
+                                    onChange={this.handleChange}
                                 />
                             </MDBCol>
                             <MDBCol>
                                 <MDBInput label="#Color" value={this.state.color} data-target={'color'} onChange={this.handleChange} className="d-inline-block" outline />
                             </MDBCol>
                         </MDBRow>
-                        <MDBInput label="Image URL:" value={this.state.image} data-target={'image'} onChange={this.handleChange} className="d-inline-block" outline />
+                        <MDBInput label="Image URL:" value={this.state.image} data-target={'urlImage'} onChange={this.handleChange} className="d-inline-block" outline />
                         <MDBBtn onClick={this.handleSubmit} color="light-green">Add Item</MDBBtn>
 
                     </TabContainer>
