@@ -1,6 +1,8 @@
 const db = require("../model");
 const axios = require('axios');
 const moment = require("moment");
+const bodyParser = require("body-parser")
+
 
 module.exports = function (app) {
 
@@ -160,24 +162,19 @@ module.exports = function (app) {
     // Update events with same title
     app.put("/api/calendar", function (req, res) {
         db.Calendar.update({
-                eventTitle: req.body.eventTitle
-            },
-
-            {
-                $set: {
-                    eventTitle: req.body.eventTitle,
-                    startDate: req.body.date,
-                    startTime: req.body.time,
-                    description: req.body.description,
-                    cost: req.body.cost,
-                    repeat: req.body.repeat
-                }
-            },
-
-            {
-                multi: true
+            eventTitle: req.body.eventTitle
+        }, {
+            $set: {
+                eventTitle: req.body.eventTitle,
+                startDate: req.body.date,
+                startTime: req.body.time,
+                description: req.body.description,
+                cost: req.body.cost,
+                repeat: req.body.repeat
             }
-        ).then(function (response) {
+        }, {
+            multi: true
+        }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
             console.log(err);
@@ -187,24 +184,19 @@ module.exports = function (app) {
     // Update one event
     app.put("/api/calendar/:id", function (req, res) {
         db.Calendar.update({
-                _id: req.params.id
-            },
-
-            {
-                $set: {
-                    eventTitle: req.body.eventTitle,
-                    startDate: req.body.date,
-                    startTime: req.body.time,
-                    description: req.body.description,
-                    cost: req.body.cost,
-                    repeat: req.body.repeat
-                }
-            },
-
-            {
-                multi: true
+            _id: req.params.id
+        }, {
+            $set: {
+                eventTitle: req.body.eventTitle,
+                startDate: req.body.date,
+                startTime: req.body.time,
+                description: req.body.description,
+                cost: req.body.cost,
+                repeat: req.body.repeat
             }
-        ).then(function (response) {
+        }, {
+            multi: true
+        }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
             console.log(err);
@@ -255,21 +247,16 @@ module.exports = function (app) {
     // Update the buy list
     app.put("/api/buylist/:id", function (req, res) {
         db.BuyList.update({
-                _id: req.params.id
-            },
-
-            {
-                $set: {
-                    price: req.body.price,
-                    quantity: req.body.quantity,
-                    cardName: req.body.cardName
-                }
-            },
-
-            {
-                multi: true
+            _id: req.params.id
+        }, {
+            $set: {
+                price: req.body.price,
+                quantity: req.body.quantity,
+                cardName: req.body.cardName
             }
-        ).then(function (response) {
+        }, {
+            multi: true
+        }).then(function (response) {
             res.json(response);
         }).catch(function (err) {
             console.log(err);
