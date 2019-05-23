@@ -6,18 +6,40 @@ import Select from '@material-ui/core/Select';
 
 export class Cards extends Component {
 
+	state = {}
+
 	handleQntChange = (event) => {
-		this.props.onChange(event)
+		const card = event.target.childNodes[0];
+		const cardName = card.getAttribute("data-name");
+		const cardPrice = card.getAttribute("data-price");
+
+		this.setState({
+			[cardName]: {
+				name: cardName,
+				quantity: event.target.value,
+				per: parseInt(cardPrice),
+				total: parseInt(event.target.value * cardPrice),
+			}
+		})
+	}
+
+	handleSell = event => {
+		const cardName = event.target.getAttribute("data-name")
+		this.props.onSell(this.state[cardName])
 	}
 
 	render() {
-
-		function qntCounter(maxBuy, cardName) {
+		function qntCounter(maxBuy, price, name) {
 			let options = [];
-			for (let i = 0; i < maxBuy; i++) {
+			for (let i = 0; i < maxBuy + 1; i++) {
 				options.push(
 					<option
-						key={i}>{i + 1}
+						className="text-dark"
+						key={i}
+						value={i}
+						data-price={price}
+						data-name={name}
+					>{i}
 					</option>
 				)
 			};
@@ -43,16 +65,19 @@ export class Cards extends Component {
 										Needing: {card.quantity}
 									</MDBRow>
 									<MDBRow>
-										<MDBBtn>Sell</MDBBtn>
+										<MDBBtn
+											onClick={this.handleSell}
+											data-name={card.name}
+										>Add
+										</MDBBtn>
 									</MDBRow>
 									<MDBRow>
 										<Select
 											native
-											value="0"
 											onChange={this.handleQntChange}
-
+											className="text-light"
 										>
-											{qntCounter(card.quantity, card.name)}
+											{qntCounter(card.quantity, card.price, card.name)}
 										</Select>
 									</MDBRow>
 								</MDBCol>
