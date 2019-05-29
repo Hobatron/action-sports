@@ -80,7 +80,7 @@ export class AdminCalender extends Component {
     deleteEvent = () => {
         api.delete(`api/calendar/${this.state.clickedEvent._id}`);
         this.setState({
-            modal:false,
+            modal: false,
         })
         // Live calendar update: derenders?
         // for (let i = 0; i < this.state.events.length; i++) {
@@ -119,6 +119,7 @@ export class AdminCalender extends Component {
             cost: 0,
             repeat: false
         });
+        this.props.onAdd()
     };
 
     getValue = value => this.setState({ cost: value });

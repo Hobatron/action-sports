@@ -20,20 +20,6 @@ module.exports = function (app) {
     });
 
     /*********User API Routes***********/
-    //File upload
-    // app.post('/api/admin/carousel/upload', function (req, res, next) {
-    //     //if(res.adminAuthToken === authToken) {}
-    //     const image = req.body.image;
-    //     let busboy = new Busboy({
-    //         headers: req.headers
-    //     })
-
-    //     busboy.on('finish', function () {
-    //         console.log(req.files)
-    //     });
-    //     req.pipe(busboy);
-    // })
-
     // Post user data
     app.post("/api/user", function (req, res) {
         db.User.create({
@@ -57,10 +43,9 @@ module.exports = function (app) {
         });
     });
 
-    // Get one User
-    app.get("/api/user/:id", function (req, res) {
-        db.User.findOne({
-            _id: req.params.id
+    app.get("/api/user/:interestQuery", function (req, res) {
+        db.User.find({
+            interests: req.params.interestQuery
         }).then(function (response) {
             res.json(response);
         }).catch(function (err) {

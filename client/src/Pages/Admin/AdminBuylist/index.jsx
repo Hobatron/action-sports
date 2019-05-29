@@ -54,7 +54,18 @@ export class AdminBuylist extends Component {
 
     handleSubmit = () => {
         api.post("/api/buylist", this.state)
-    }
+        this.setState({
+            value: 0,
+            cardQ: '',
+            searchResults: [],
+            disabled: true,
+            price: 0,
+            quantity: 0,
+            name: '',
+            image: '',
+        });
+        this.props.onAdd();
+    };
 
     handleTabChange = (event, value) => {
         this.setState({ value });
@@ -77,8 +88,8 @@ export class AdminBuylist extends Component {
             price: cardDetails.price,
             name: cardDetails.name,
             image: cardDetails.image,
-        })
-    }
+        });
+    };
 
     render() {
         const { classes, theme } = this.props;

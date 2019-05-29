@@ -14,7 +14,6 @@ class CarouselWidget extends Component {
 
   componentDidMount() {
     api.getCarousel().then(results => {
-      console.log(results)
       this.setState({
         items: results
       });
