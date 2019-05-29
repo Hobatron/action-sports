@@ -43,7 +43,7 @@ class CalendarPage extends Component {
         )
     }
     handleEventClick = (event, e) => {
-        console.log(event, e.target)
+        
     }
 
     handleEventSelect = event => {

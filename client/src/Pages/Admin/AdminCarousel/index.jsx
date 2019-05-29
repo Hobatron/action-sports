@@ -96,7 +96,8 @@ class AdminCarousel extends React.Component {
             urlImage: '',
             localImage: '',
             color: '',
-        })
+        });
+        this.props.onAdd()
     };
 
     render() {
@@ -146,11 +147,11 @@ class AdminCarousel extends React.Component {
                         <div>
                             {this.state.carouselItems.map(item => {
                                 // console.log(item)
-                                function imageName () {
+                                function imageName() {
                                     if (item.fileName) {
                                         return item.fileName.slice(0, 45) + "...";
                                     } else {
-                                       return item.image.slice(0, 45) + "...";
+                                        return item.image.slice(0, 45) + "...";
                                     }
                                 }
                                 return (

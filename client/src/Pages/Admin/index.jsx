@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
-
 import './admin.css'
 import { MDBContainer, MDBRow, MDBInput, MDBBtn } from 'mdbreact';
 import Radio from '@material-ui/core/Radio';
@@ -9,7 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AdminCarousel from './AdminCarousel';
 import AdminCalendar from './AdminCalendar';
 import AdminBuylist from './AdminBuylist';
-
+import CustomSnackbar from '../../components/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
+import api from './api'
 
 
 export default withAuth(class Admin extends Component {
@@ -20,8 +20,11 @@ export default withAuth(class Admin extends Component {
                 "Magic", "D&D", "Vangaurd", "Yu-Gi-Oh", "Board Games", "Starwars",
                 "KeyForge", "Transformers"
             ],
-            selectedValue: '',
-            authenticated: null
+            selectedInterest: '',
+            authenticated: null,
+            snackOpen: false,
+            snackVariant: "success",
+            snackText: "Item added!"
         };
         this.checkAuthentication = this.checkAuthentication.bind(this);
         this.login = this.login.bind(this);
@@ -33,33 +36,49 @@ export default withAuth(class Admin extends Component {
         const authenticated = await this.props.auth.isAuthenticated();
         if (authenticated !== this.state.authenticated) {
             this.setState({ authenticated });
-        }
-    }
+        };
+    };
 
     componentDidMount() {
         this.checkAuthentication();
-    }
+    };
 
     componentDidUpdate() {
         this.checkAuthentication();
-    }
+    };
 
     login() {
         this.props.auth.login('/');
-    }
+    };
 
     logout() {
         this.props.auth.logout('/');
-    }
+    };
 
     getPickerValue = (value) => {
+
+    };
+
+    handleEmailPull = () => {
+        api.get(`/api/user/${this.state.selectedInterest}`, (results) => {
+            let emails = results.map(user => {
+                return user.email + " ";
+            });
+            this.setState({
+                emails: emails,
+            });
+        });
     };
 
     handleRadioChange = event => {
-        this.setState({ selectedValue: event.target.value });
+        this.setState({ selectedInterest: event.target.value });
     };
 
-
+    handleSnackToggle = () => {
+        this.setState({
+            snackOpen: !this.state.snackOpen,
+        });
+    };
 
     render() {
         if (this.state.authenticated === null) return null;
@@ -70,27 +89,42 @@ export default withAuth(class Admin extends Component {
 
         return (
             <MDBContainer className="mt-5">
+                <Snackbar
+                    autoHideDuration={4000}
+                    open={this.state.snackOpen}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "center"
+                    }}
+                    onClose={this.handleSnackToggle}
+                >
+                    <CustomSnackbar
+                        className="mt-3 font-bold"
+                        text={this.state.snackText}
+                        variant={this.state.snackVariant}
+                        onClose={this.handleSnackToggle}
+                    />
+                </Snackbar>
                 <MDBRow className="form-group pl-5 pr-5 pt-4">
                     <div>
                         <div className="bshadow p-3 w-100 border">
-                            <AdminCalendar />
+                            <AdminCalendar onAdd={this.handleSnackToggle} />
                         </div>
                     </div>
                 </MDBRow>
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
-                    Space for editing upcoming events
                 </MDBRow>
                 <MDBRow className="font-weight-bold pl-5 pr-5 pt-4">
                     <div>
                         <div className="bshadow p-3 w-100 border">
-                            <AdminCarousel />
+                            <AdminCarousel onAdd={this.handleSnackToggle} />
                         </div>
                     </div>
                 </MDBRow>
                 <MDBRow className="pl-5 pr-5 pt-4">
                     <div>
                         <div className="bshadow p-3 border">
-                            <AdminBuylist />
+                            <AdminBuylist onAdd={this.handleSnackToggle} />
                         </div>
                     </div>
                 </MDBRow>
@@ -107,7 +141,7 @@ export default withAuth(class Admin extends Component {
                                             key={catagory}
                                             control={
                                                 <Radio className="radio"
-                                                    checked={this.state.selectedValue === `${catagory}`}
+                                                    checked={this.state.selectedInterest === `${catagory}`}
                                                     onChange={this.handleRadioChange}
                                                     value={catagory}
                                                     name="radio-button-demo"
@@ -120,8 +154,8 @@ export default withAuth(class Admin extends Component {
                                     );
                                 })}
                             </form>
-                            <MDBInput type="textarea" label="Email" outline />
-                            <MDBBtn className="ml-2" color="light-green">Add Event</MDBBtn>
+                            <div className="email-display">{this.state.emails}</div>
+                            <MDBBtn className="ml-2" color="light-green" onClick={this.handleEmailPull}>Pull emails</MDBBtn>
                         </div>
                     </div>
                 </MDBRow>

@@ -5,6 +5,9 @@ export default {
         axios.post(url, data)
             .then((res) => {
                 f(res.data);
-            });
+            })
+            .catch(err => {
+                f("err")
+            })
     }
 }

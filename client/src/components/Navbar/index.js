@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput } from 'mdbreact';
 import './Navbar.css';
+import Snackbar from '@material-ui/core/Snackbar';
 import { Link } from 'react-router-dom';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox'
-import api from './api.js'
+import Checkbox from '@material-ui/core/Checkbox';
+import api from './api.js';
+import CustomSnackbar from '../Snackbar';
 
 export class Navbar extends Component {
   state = {
@@ -19,18 +21,35 @@ export class Navbar extends Component {
     email: "",
     name: "",
     signedUp: false,
+    snackOpen: false,
+    snackVariant: "success",
+    snackText: ""
   };
 
   submit = () => {
     if (this.state.interests.length > 0) {
-      api.post("/api/user", this.state, (res) => {
-        if (res) {
+      const { interests, email, name } = this.state;
+      const dataToSend = {
+        interests: interests,
+        email: email,
+        name: name,
+      }
+      api.post("/api/user", dataToSend, (res) => {
+        if (res !== "err") {
           this.setState({
             modal: !this.state.modal,
+            snackOpen: true,
+            snackVariant: "success",
+            snackText: "Thanks for signing up!",
             signedUp: true
           });
         } else {
-          //error
+          this.setState({
+            modal: !this.state.modal,
+            snackOpen: true,
+            snackVariant: "danger",
+            snackText: "Something goofed, contact an admin",
+          })
         }
       });
     } else {
@@ -67,12 +86,34 @@ export class Navbar extends Component {
 
   };
 
+  handleSnackToggle = () => {
+    this.setState({
+      snackOpen: !this.state.snackOpen,
+    })
+  }
+
   render() {
 
     return (
       <div>
         <div id="as-nav-bar">
           <div className="container">
+            <Snackbar
+              autoHideDuration={4000}
+              open={this.state.snackOpen}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center"
+              }}
+              onClose={this.handleSnackToggle}
+            >
+              <CustomSnackbar
+                className="mt-3 font-bold"
+                text={this.state.snackText}
+                variant={this.state.snackVariant}
+                onClose={this.handleSnackToggle}
+              />
+            </Snackbar>
             <div id="title"><Link className="link" to="/">ACTION SPORTS AND GAMING</Link></div>
             <div id="menu">
               <Link className="link" to="/calendar">EVENTS</Link> | <Link className="link" to="/buylist">BUY LIST</Link> | <span onClick={this.toggle} >NEWS LETTER</span>
@@ -96,8 +137,7 @@ export class Navbar extends Component {
                       label={catagory}
                     />
                   )
-                })
-                }
+                })}
               </FormGroup>
             </FormControl>
           </MDBModalBody>

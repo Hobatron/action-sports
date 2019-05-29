@@ -2,23 +2,30 @@ import React, { Component } from 'react';
 import './Buylist.css';
 import api from "./api";
 import Card from '../../components/Card';
+import CustomSnackbar from '../../components/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 import MTGAutoComplete from '../../components/MTGAutoComplete';
-import { MDBBtn, MDBRow } from 'mdbreact'
+import { MDBBtn, MDBRow, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput } from 'mdbreact'
 
 function genFile(forSaleListObj) {
     const obj = forSaleListObj;
-    let txt = "\nDownloaded via actionsports.com\r\n\n"
-     + "\r\n****ALL PRICES ARE SUBJECT TO CHANGE****"
-     +"Qnt:\tEach:\tCard:\t\t\tTotal:\r\n"
+    let txt = "\nDownloaded via actionsports.com\r\n"
+        + "****ALL PRICES ARE SUBJECT TO CHANGE****"
+        + "\r\n\r\nQnt:\tEach:\tCard:\r\n\r\n"
 
     let totalCards = 0;
     let totalValue = 0;
     obj.forEach((card) => {
         totalCards += parseInt(card.quantity);
         totalValue += card.total;
-        txt += `\nx${card.quantity}\t$${card.per.toFixed(2)}\t${card.name}\t\t$${card.total.toFixed(2)}\r\n`
+        let tabs = "";
+        //adds tabs between card.name and card.total to align them with total. Can't support card names longer than 66chars
+        for (let i = card.name.length; i < 32; i += 8) {
+            tabs += "\t"
+        };
+        txt += `\nx${card.quantity}\t$${card.per.toFixed(2)}\t${card.name}${tabs}$${card.total.toFixed(2)}\r\n`
     });
-    txt += `\r\n\nTotal cards: ${totalCards} \t\t\t\t\tTotal: $${totalValue.toFixed(2)}`
+    txt += `\r\n\nTotal cards: ${totalCards} \t\t\t\tTotal:\t$${totalValue.toFixed(2)}`
 
     return txt
 }
@@ -29,6 +36,10 @@ class Buylist extends Component {
         buylist: [],
         currentView: [],
         toSell: [],
+        modal: false,
+        snackOpen: false,
+        snackVariant: "success",
+        snackText: "",
     };
 
     componentDidMount() {
@@ -44,7 +55,10 @@ class Buylist extends Component {
         let updateToSell = this.state.toSell;
         updateToSell.push(newItems);
         this.setState({
-            toSell: updateToSell
+            toSell: updateToSell,
+            snackOpen: true,
+            snackVariant: "success",
+            snackText: `Sweet, added ${newItems.quantity} ${newItems.name} to your selection`,
         });
     };
 
@@ -54,6 +68,16 @@ class Buylist extends Component {
         element.download = "For Sale.txt";
         document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
+    };
+
+    toggle = () => {
+        if (!this.state.signedUp) {
+            this.setState({
+                modal: !this.state.modal
+            });
+        } else {
+            //already signed up!
+        }
     };
 
     getCardName = card => {
@@ -66,10 +90,31 @@ class Buylist extends Component {
             currentView: searchResults,
         });
     };
+    handleSnackToggle = () => {
+        this.setState({
+            snackOpen: !this.state.snackOpen,
+        })
+    }
 
     render() {
         return (
             <div className="container">
+                <Snackbar
+                    autoHideDuration={3000}
+                    open={this.state.snackOpen}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "center"
+                    }}
+                    onClose={this.handleSnackToggle}
+                >
+                    <CustomSnackbar
+                        className="mt-3 font-bold"
+                        text={this.state.snackText}
+                        variant={this.state.snackVariant}
+                        onClose={this.handleSnackToggle}
+                    />
+                </Snackbar>
                 <div id="buylist-container">
                     <div id="Searchbar">
                         <div className="pt-3" id="buylist-title">
@@ -82,7 +127,7 @@ class Buylist extends Component {
                             return={this.getCardName}
                         />
                         <MDBRow>
-                            <MDBBtn className="mx-auto" onClick={this.handleDownload}>Download your for sale list</MDBBtn>
+                            <MDBBtn className="mx-auto" onClick={this.toggle}>Review your selection</MDBBtn>
                         </MDBRow>
                     </div>
                     <div className="row">
@@ -94,6 +139,27 @@ class Buylist extends Component {
                         </div>
                     </div>
                 </div>
+                <MDBModal className="signupModal" isOpen={this.state.modal} toggle={this.toggle}>
+                    <MDBModalHeader toggle={this.toggle}>Please review before downloading:<br />ALL PRICES SUBJECT TO CHANGE</MDBModalHeader>
+                    <MDBModalBody>
+                        {this.state.toSell.map(card => {
+                            return (
+                                <div className="w-100" key={card.name}>
+                                    <div className="w-100 d-flex justify-content-between">
+                                        x{card.quantity}
+                                        <span> {card.name} </span>
+                                        Total: {card.total.toFixed(2)}
+                                    </div>
+
+                                </div>
+                            )
+                        })}
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                        <MDBBtn color="secondary" onClick={this.toggle}>Cancel</MDBBtn>
+                        <MDBBtn className="mx-auto" onClick={this.handleDownload}>Download</MDBBtn>
+                    </MDBModalFooter>
+                </MDBModal>
             </div>
         )
     }
