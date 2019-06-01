@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { MDBRow, MDBCol, MDBInputSelect, MDBBtn } from 'mdbreact';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -50,10 +48,19 @@ export class AdminBuylist extends Component {
         quantity: 0,
         name: '',
         image: '',
+        buylist: [],
     };
 
     handleSubmit = () => {
-        api.post("/api/buylist", this.state)
+        const { name, image, price, quantity } = this.state
+        const data = {
+            name: name,
+            image: image,
+            price: price,
+            quantity: quantity
+        };
+
+        api.post("/api/buylist", data)
         this.setState({
             value: 0,
             cardQ: '',
@@ -67,12 +74,16 @@ export class AdminBuylist extends Component {
         this.props.onAdd();
     };
 
-    handleTabChange = (event, value) => {
-        this.setState({ value });
+    componentDidMount() {
+        api.get("/api/buylist", (buylist) => {
+            this.setState({
+                buylist: buylist
+            })
+        })
     };
 
-    selectAllSets = event => {
-        // console.log(event)
+    handleTabChange = (event, value) => {
+        this.setState({ value });
     };
 
     handlePrice = value => this.setState({ price: value });
@@ -90,6 +101,14 @@ export class AdminBuylist extends Component {
             image: cardDetails.image,
         });
     };
+
+    removeCard = event => {
+        const id = event.target.getAttribute('data-id');
+        api.delete(`/api/buylist/${id}`);
+        this.setState({
+            buylist: this.state.buylist.filter(item => item._id !== id)
+        });
+    }
 
     render() {
         const { classes, theme } = this.props;
@@ -117,17 +136,6 @@ export class AdminBuylist extends Component {
                         <MDBRow>
                             <MDBCol>
                                 <MTGAuto return={this.cardPicked} />
-                            </MDBCol>
-                            <MDBCol className="mt-3">
-                                <FormControlLabel className=""
-                                    control={<Checkbox
-                                        disabled
-                                        // onChange={this.selectAllSets('set')}
-                                        value="repeat"
-                                        label="Male"
-                                    />}
-                                    label="All sets"
-                                />
                             </MDBCol>
                         </MDBRow>
                         <MDBRow>
@@ -186,7 +194,18 @@ export class AdminBuylist extends Component {
                         />
                         <MDBBtn onClick={this.handleSubmit} color="light-green">Add card</MDBBtn>
                     </TabContainer>
-                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                    <TabContainer dir={theme.direction}>
+                        <MDBRow>
+                            {this.state.buylist.map(card => {
+                                return (
+                                    <div className="remCar" key={card._id}>
+                                        {card.name}
+                                        <span onClick={this.removeCard} data-id={card._id}>x</span>
+                                    </div>
+                                )
+                            })}
+                        </MDBRow>
+                    </TabContainer>
                 </SwipeableViews>
             </div>
         );
