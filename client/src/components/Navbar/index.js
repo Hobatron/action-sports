@@ -23,7 +23,7 @@ export class Navbar extends Component {
     signedUp: false,
     snackOpen: false,
     snackVariant: "success",
-    snackText: ""
+    snackText: "",
   };
 
   submit = () => {

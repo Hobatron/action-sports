@@ -1,7 +1,11 @@
 const db = require("../model");
 const axios = require('axios');
 const moment = require("moment");
-const bodyParser = require("body-parser")
+const braintree = require("braintree");
+
+const gateway = braintree.connect({
+    accessToken: "access_token$sandbox$8b3h4zd5hfywqb2y$f3c6c9ba744fa88748def2e996e84194"
+});
 
 
 module.exports = function (app) {
@@ -18,6 +22,41 @@ module.exports = function (app) {
                 res.json(response.data);
             });
     });
+
+    // Paypal
+    app.get('/api/client_token', (req, res) => {
+        gateway.clientToken.generate({}, function (err, response) {
+            res.send(response.clientToken);
+        });
+    })
+
+    app.post('/api/transaction', (req, res) => {
+        const {
+            orderID,
+            amount,
+            paymentMethod,
+        } = req.body;
+        const saleRequest = {
+            amount: amount,
+            merchantAccountId: "USD",
+            paymentMethodNonce: paymentMethod,
+            orderId: orderID,
+            descriptor: {
+                name: `actionsports*`,
+            },
+        };
+
+        gateway.transaction.sale(saleRequest, function (err, result) {
+            if (err) {
+                res.send("<h1>Error:  " + err + "</h1>");
+            } else if (result.success) {
+                res.send("<h1>Success! Transaction ID: " + result.transaction.id + "</h1>");
+            } else {
+                res.send("<h1>Error:  " + result.message + "</h1>");
+            }
+        });
+
+    })
 
     /*********User API Routes***********/
     // Post user data

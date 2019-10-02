@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose")
 const apiRoutes = require("./routes/apiRoutes");
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -32,8 +32,6 @@ mongoose.connect("mongodb://asw:aswebdev1@ds137206.mlab.com:37206/heroku_2ztlncn
 }, () => {
   console.log("Connected");
 });
-
-// Define API routes here
 
 /************Define API routes here************/
 apiRoutes(app);

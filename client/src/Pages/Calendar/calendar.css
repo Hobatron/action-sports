@@ -67,3 +67,7 @@
 .calendarEvent {
     height: 15px;
 }
+
+.rsvpModal {
+    display: none
+}

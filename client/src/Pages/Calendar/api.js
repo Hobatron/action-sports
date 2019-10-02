@@ -1,13 +1,22 @@
 import axios from "axios";
 
 export default {
-    get: (func) => {
-        axios.get("/api/calendar")
+    get: (url, func) => {
+        axios.get(url)
             .then((res) => {
-                res.data.forEach((e) => {
-                    e.end = e.start;
-                })
+                if (typeof res.data !== "string") {
+                    res.data.forEach((e) => {
+                        e.end = e.start;
+                    });
+                };
                 func(res.data);
             });
     },
-}
+    post: (url, data, func) => {
+        console.log(data)
+        axios.post(url, data)
+            .then(res => {
+                func(res);
+            });
+    }
+};
